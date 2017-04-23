@@ -1,0 +1,26 @@
+{
+  "name": "team-gnome-teamwork",
+  "version": "1.0.0",
+  "description": "SPA Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Gnome/teamwork-js-applications.git"
+  },
+  "author": "Samuil Mihaylov (samuil.a.mihaylov@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-Gnome/teamwork-js-applications/issues"
+  },
+  "homepage": "https://github.com/Team-Gnome/teamwork-js-applications#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "handlebars": "^4.0.6",
+    "jquery": "^3.2.1",
+    "systemjs": "^0.20.12",
+    "systemjs-plugin-babel": "0.0.21"
+  }
+}
