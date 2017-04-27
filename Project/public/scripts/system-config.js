@@ -6,11 +6,13 @@ SystemJS.config({
         'systemjs-babel-build': 'node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
 
         // Application files
-        'app': 'scripts/app.js',
+        'main': 'scripts/main.js',
         'router': 'scripts/router.js',
         'requester': 'scripts/requester.js',
-        'testController': 'scripts/controllers/testController.js',
         'homeController': 'scripts/controllers/homeController.js',
+        'registerController': 'scripts/controllers/registerController.js',
+        'signInController': 'scripts/controllers/signInController.js',
+        'notFoundController': 'scripts/controllers/notFoundController.js',
         'templates': 'scripts/templates.js',
 
         // Library files
@@ -25,4 +27,4 @@ SystemJS.config({
     }
 });
 
-System.import('app');
+System.import('main');
