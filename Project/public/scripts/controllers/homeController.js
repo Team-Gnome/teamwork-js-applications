@@ -1,10 +1,14 @@
 import { load as loadTemplate } from 'templates';
 
-const $appContainer = $('#app-container');
+const $root = $('#root');
 
-export function get(params) {
+function get(params) {
     loadTemplate('home')
         .then(template => {
-            $appContainer.html(template());
+            $root.html(template());
         });
+}
+
+export {
+    get
 }   
