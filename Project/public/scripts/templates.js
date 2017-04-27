@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 
-import * as requester from 'requester';
+import { get } from 'requester';
 
 const cacheObj = {};
 
@@ -9,7 +9,7 @@ export function load(templateName) {
         return Promise.resolve(cacheObj[templateName]);
     }
 
-    return requester.get(`templates/${templateName}.handlebars`)
+    return get(`templates/${templateName}.handlebars`)
         .then(template => {
             const compiledTemplate = Handlebars.compile(template);
             cacheObj[templateName] = compiledTemplate;

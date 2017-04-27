@@ -12,6 +12,10 @@ function request(url, type, body, headers) {
     return promise;
 }
 
-export function get(url, headers = {}) {
+function get(url, headers = {}) {
     return request(url, 'GET', '', headers);
+}
+
+export {
+    get
 }
