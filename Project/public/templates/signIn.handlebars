@@ -1,17 +1,27 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#/home">Gnome-Team</a> {{!--
+        <a class="navbar-brand" href="#/home">Gnome-Team</a>
 
-        <ul class="nav navbar-nav">
-            <a class="navbar-brand" href="#"></a>
-            <a class="navbar-brand" href="#"></a>
-        </ul>--}}
+        <p class="navbar-text navbar-right" id="login-navbar-text">
+            <a href="#" class="navbar-link" id="login-navbar-link"></a>
+        </p>
 
-        <a class="btn btn-default navbar-btn float-right" href="#/register">Register</a>
-        <a class="btn btn-default navbar-btn float-right" href="#/signin">Sign in</a>
+        <a class="btn btn-default navbar-btn float-right" href="#/register" id="register-btn">Register</a>
+        <a class="btn btn-default navbar-btn float-right" href="#/signin" id="sign-in-btn">Sign in</a>
     </div>
 </nav>
 
 <div class="centred">
-    <strong>Sign in</strong>
+    <form>
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+    </form>
+
+    <button class="btn btn-primary" id="send-sign-in-btn">Sign in</button>
 </div>
