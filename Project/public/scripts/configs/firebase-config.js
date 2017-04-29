@@ -18,6 +18,3 @@ const firebaseDb = (function () {
 export {
     firebaseDb
 }
-
-
-
