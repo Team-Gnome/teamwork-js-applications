@@ -14,7 +14,9 @@ SystemJS.config({
         'notFoundController': 'scripts/controllers/notFoundController.js',
         'templates': 'scripts/templates.js',
         'firebaseConfig': 'scripts/configs/firebase-config.js',
-        'data': 'scripts/data.js',
+        'data': 'scripts/firebase/data.js',
+        'userAuthentication': 'scripts/firebase/userAuthentication.js',
+        'router': 'scripts/configs/router-config.js',
 
         // Library files
         'jquery': 'node_modules/jquery/dist/jquery.min.js',
