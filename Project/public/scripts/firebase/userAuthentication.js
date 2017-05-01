@@ -1,68 +1,106 @@
 import * as firebase from 'firebase';
+import { navigo } from 'router';
+import * as signInUserController from 'signInUserController';
 
 export default class User {
 
     static currentUser() {
-        return firebase.auth().currentUser;
-    }
+        return {
+            email: firebase.auth().currentUser.email,
+            uid: firebase.auth().currentUser.uid
+        }
+    };
 
-    static register(email, password) {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            // Handle Errors
-            const errorCode = error.code;
-            const errorMessage = error.message;
+    static registerUser(email, password, onSuccess, onError) {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .catch(function (error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
 
-            if (errorCode == 'auth/weak-password') {
-                alert('The password is too weak.');
-            }
-            else {
-                alert(errorMessage);
-            }
-            console.log('auth request sent')
-        })
+                if (onError) {
+                    onError(error);
+                } else {
+                    if (errorCode == 'auth/weak-password') {
+                        alert('The password is too weak.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                }
+            })
             .then(() => {
                 firebase.auth().signInWithEmailAndPassword(email, password);
+                if (onSuccess) {
+                    onSuccess();
+                }
             });
-    }
+    };
+
+    static verifyAcocunt() {
+        firebase.auth().currentUser.sendEmailVerification()
+            .then(() => alert(`Verification e-mail sent to ${User.currentUser().email}`))
+            .catch(() => alert('Something went wrong. Please try again!'));
+    };
 
     static initAuthStatusChange() {
-        firebase.auth().onAuthStateChanged(function (user) {
-            $('#verify-btn').addClass('hidden');
+        firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                // User is signed in.
                 const email = user.email;
                 const emailVerified = user.emailVerified;
 
-                $('#login-navbar-text').text('Signed in as');
-                $('#login-navbar-link').text(`${email}`);
+                $('#login-navbar-status').text(`You are currently logged with ${email}`);
                 $('#register-btn').addClass('hidden');
                 $('#sign-in-btn').text('Sign out');
 
                 if (!emailVerified) {
                     $('#verify-btn').removeClass('hidden');
+                    $('#verify-btn').click(User.verifyAcocunt);
                 }
+
+                return this.currentUser();
             }
             else {
-                $('#login-navbar-text').text('Signed out');
+                $('#login-navbar-status').text('You are not currently logged in.');
                 $('#sign-in-btn').text('Sign in');
                 $('#register-btn').removeClass('hidden');
             }
+
+            $('#sign-in-btn').click(() => {
+                if ($('#sign-in-btn').text() === 'Sign out') {
+                    User.signOut();
+                }
+            });
         });
-    }
+    };
 
     static verifyAcocunt() {
         firebase.auth().currentUser.sendEmailVerification()
             .then(() => alert(`Verification e-mail sent to ${User.currentUser.email}`));
-    }
+    };
 
     static signOut() {
-        firebase.auth().signOut();
-    }
+        firebase.auth().signOut()
+            .catch(() => alert('Something went wrong. Please try again!'));
+    };
 
-    static signIn(email, password) {
-        console.log('here');
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
-            //handle errors
-        });
-    }
+    static signIn(email, password, onSuccess, onError) {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .catch(error => {
+                if (onError) {
+                    onError(error);
+                } else {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode === 'auth/wrong-password') {
+                        alert('Wrong password.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                }
+            })
+            .then(() => {
+                if (onSuccess) {
+                    onSuccess();
+                }
+            });
+    };
 }

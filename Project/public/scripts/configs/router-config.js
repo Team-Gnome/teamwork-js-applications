@@ -1,33 +1,24 @@
 import 'jquery';
 import Navigo from 'navigo';
 
-import {
-    get as setHomePageContent
-} from 'homeController';
+import * as homeController from 'homeController';
+import * as signInUserController from 'signInUserController';
+import * as registerUserController from 'registerUserController';
+import * as userController from 'userController';
+import * as notFoundController from 'notFoundController';
 
-import {
-    get as setSignInPageContent
-} from 'signInUserController';
+import User from 'userAuthentication';
 
-import {
-    signIn
-} from 'signInUserController';
+User.initAuthStatusChange();
 
-import {
-    get as setRegisterPageContent
-} from 'registerUserController';
+$('#sign-in-btn').click(() => {
+    if ($('#sign-in-btn').text() === 'Sign out') {
+        User.signOut();
+    };
+})
 
-import {
-    registerUser
-} from 'registerUserController';
-
-import {
-    get as setNotFoundPageContent
-} from 'notFoundController';
-
-
-const router = (() => {
-    const navigo = (() => {
+export const navigo = (() => {
+    const router = (() => {
         const root = null;
         const useHash = false;
         const hash = '#!';
@@ -36,55 +27,46 @@ const router = (() => {
     })();
 
     function initRoutes() {
-        navigo
+        router
             .on('/', () => {
-                $.when(setHomePageContent())
-                    .then();
-            })
-            .on('/home', () => {
-                $.when(setHomePageContent())
-                    .then()
-            })
-            .on('/signin', () => {
-                $.when(setSignInPageContent())
+                $.when(homeController.loadHandlebars())
                     .then(() => {
-                        $('#send-sign-in-btn').click(() => {
-                            console.log(1);
-                            signIn();
-                        });
+
                     });
             })
-            .on('/register', () => {
-                $.when(setRegisterPageContent())
+            .on('/home', () => {
+                $.when(homeController.loadHandlebars())
                     .then(() => {
-                        $('#btn-register').click(() => {
-                            registerUser();
-                        });
+
+                    });
+            })
+            .on('/signin', () => {
+                $.when(signInUserController.loadHandlebars())
+                    .then(() => {
+
+                    });
+            })
+            .on('/user/:id', () => {
+                $.when(userController.loadHandlebars())
+                    .then();
+            })
+            .on('/register', () => {
+                $.when(registerUserController.loadHandlebars())
+                    .then(() => {
+
                     });
             })
             .resolve();
 
-        navigo.notFound(function () {
-                setNotFoundPageContent();
-            })
+        router.notFound(function () {
+            notFoundController.loadHandlebars();
+        })
             .resolve();
     }
 
-    // User.initAuthStatusChange();
-
-    // $('#sign-in-btn').click(() => {
-    //     if ($('#sign-in-btn').text() === 'Sign out') {
-    //         User.signOut();
-    //     } else {
-    //         router.navigate('/signin');
-    //     }
-    // });
-
     return {
-        initRoutes: initRoutes
+        initRoutes: initRoutes,
+        router: router
     }
 })();
 
-export {
-    router
-};

@@ -7,10 +7,10 @@ SystemJS.config({
 
         // Application files
         'main': 'scripts/main.js',
-        'requester': 'scripts/requester.js',
         'homeController': 'scripts/controllers/homeController.js',
         'registerUserController': 'scripts/controllers/registerUserController.js',
         'signInUserController': 'scripts/controllers/signInUserController.js',
+        'userController': 'scripts/controllers/userController.js',
         'notFoundController': 'scripts/controllers/notFoundController.js',
         'templates': 'scripts/templates.js',
         'firebaseConfig': 'scripts/configs/firebase-config.js',
