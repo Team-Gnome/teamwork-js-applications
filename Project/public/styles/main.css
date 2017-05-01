@@ -1,3 +1,13 @@
+.container {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.navbar-text{
+    margin-right: 20px;
+    margin-left: 50px;
+}
+
 .float-right {
     float: right;
 }
@@ -14,6 +24,14 @@
 }
 
 .registration-form {
-    display: block;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 250px;
     margin-top: 60px;
 }
+
+.hidden {
+    display: none;
+}
+

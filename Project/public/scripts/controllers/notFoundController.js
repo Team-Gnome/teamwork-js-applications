@@ -1,14 +1,10 @@
-import { load as loadTemplate } from 'templates';
+import loadTemplate from 'templates';
 
 const $root = $('#root');
 
-function get(params) {
+export function loadHandlebars(params) {
     loadTemplate('notFound')
         .then(template => {
-            $root.html(template());
+            $root.html(template);
         });
 }
-
-export {
-    get
-}   

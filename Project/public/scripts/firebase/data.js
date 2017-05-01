@@ -1,11 +1,9 @@
-import {
-    firebaseDb as db
-} from 'firebaseConfig';
+import { firebaseDb as db } from 'firebaseConfig';
 
 const defaultRef = db.ref('server/saving-data/gnome-base');
 const usersRef = defaultRef.child('users');
 
-function addNewUserInDatabase(username, firstName, lastName, hashedPassword, email) {
+export function addNewUserInDatabase(username, firstName, lastName, hashedPassword, email) {
 
     const user = {};
 
@@ -19,8 +17,4 @@ function addNewUserInDatabase(username, firstName, lastName, hashedPassword, ema
     return new Promise((resolve, reject) => {
         usersRef.push(user);
     });
-}
-
-export {
-    addNewUserInDatabase
 }

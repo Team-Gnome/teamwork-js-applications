@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 
-const firebaseDb = (function () {
+export const firebaseDb = (function () {
     const config = {
         apiKey: "AIzaSyCmLp7HdYLSZ2txUxwG9HOYz857-24CuEo",
         authDomain: "gnome-teamwork-e0bde.firebaseapp.com",
@@ -14,7 +14,3 @@ const firebaseDb = (function () {
 
     return firebase.database();
 }());
-
-export {
-    firebaseDb
-}

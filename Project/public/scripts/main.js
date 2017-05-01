@@ -1,6 +1,6 @@
 import 'jquery';
-import { router } from 'router';
+import { navigo } from 'router';
 
 $(document).ready(() => {
-    router.initRoutes();
+    navigo.initRoutes();
 });
