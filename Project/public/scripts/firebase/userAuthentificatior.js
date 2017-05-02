@@ -1,8 +1,11 @@
 import * as firebase from 'firebase';
 import { navigo } from 'router';
 import * as signInUserController from 'signInUserController';
+import * as registerUserController from 'registerUserController';
+import * as data from 'data';
+import User from 'user';
 
-export default class User {
+export default class UserAuthentificatior {
 
     static currentUser() {
         return {
@@ -11,15 +14,19 @@ export default class User {
         }
     };
 
-    static registerUser(email, password, onSuccess, onError) {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+    static registerUser(onSuccess, onError) {
+
+        const userData = registerUserController.getUserInputData();
+
+        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
             .catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
 
                 if (onError) {
                     onError(error);
-                } else {
+                }
+                else {
                     if (errorCode == 'auth/weak-password') {
                         alert('The password is too weak.');
                     } else {
@@ -28,7 +35,19 @@ export default class User {
                 }
             })
             .then(() => {
-                firebase.auth().signInWithEmailAndPassword(email, password);
+                let uid;
+                firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
+                    .then(() => {
+                        uid = this.currentUser().uid;
+                    })
+                    .then(() => {
+                        const user = new User(userData.username, userData.firstname, userData.lastname, userData.email);
+                        data.addNewUserInDatabase(uid, user);
+                    })
+                    .then(() => {
+                        navigo.router.navigate('#/user');
+                    });
+
                 if (onSuccess) {
                     onSuccess();
                 }
@@ -42,34 +61,30 @@ export default class User {
     };
 
     static initAuthStatusChange() {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                const email = user.email;
-                const emailVerified = user.emailVerified;
+        return new Promise((resolve, reject) => {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    const email = user.email;
+                    const emailVerified = user.emailVerified;
 
-                $('#login-navbar-status').text(`You are currently logged with ${email}`);
-                $('#register-btn').addClass('hidden');
-                $('#sign-in-btn').text('Sign out');
+                    $('#login-navbar-status').html(`You are currently logged with <a href="#/user">${email}</a>`);
+                    $('#register-btn').addClass('hidden');
+                    $('#sign-in-btn').text('Sign out');
 
-                if (!emailVerified) {
-                    $('#verify-btn').removeClass('hidden');
-                    $('#verify-btn').click(User.verifyAcocunt);
+                    if (!emailVerified) {
+                        $('#verify-btn').removeClass('hidden');
+                        $('#verify-btn').click(User.verifyAcocunt);
+                    }
+
+                    resolve(user.uid);
                 }
-
-                return this.currentUser();
-            }
-            else {
-                $('#login-navbar-status').text('You are not currently logged in.');
-                $('#sign-in-btn').text('Sign in');
-                $('#register-btn').removeClass('hidden');
-            }
-
-            $('#sign-in-btn').click(() => {
-                if ($('#sign-in-btn').text() === 'Sign out') {
-                    User.signOut();
+                else {
+                    $('#login-navbar-status').text('You are not currently logged in.');
+                    $('#sign-in-btn').text('Sign in');
+                    $('#register-btn').removeClass('hidden');
                 }
-            });
-        });
+            })
+        })
     };
 
     static verifyAcocunt() {
@@ -83,7 +98,7 @@ export default class User {
     };
 
     static signIn(email, password, onSuccess, onError) {
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        return firebase.auth().signInWithEmailAndPassword(email, password)
             .catch(error => {
                 if (onError) {
                     onError(error);
