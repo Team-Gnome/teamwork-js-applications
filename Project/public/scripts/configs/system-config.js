@@ -11,12 +11,14 @@ SystemJS.config({
         'registerUserController': 'scripts/controllers/registerUserController.js',
         'signInUserController': 'scripts/controllers/signInUserController.js',
         'userController': 'scripts/controllers/userController.js',
+        'lobbyCreationController': 'scripts/controllers/lobby-creation-controller.js',
         'notFoundController': 'scripts/controllers/notFoundController.js',
         'templates': 'scripts/templates.js',
         'firebaseConfig': 'scripts/configs/firebase-config.js',
         'data': 'scripts/firebase/data.js',
-        'userAuthentication': 'scripts/firebase/userAuthentication.js',
+        'userAuthentificatior': 'scripts/firebase/userAuthentificatior.js',
         'router': 'scripts/configs/router-config.js',
+        'user': 'scripts/models/user.js',
 
         // Library files
         'jquery': 'node_modules/jquery/dist/jquery.min.js',

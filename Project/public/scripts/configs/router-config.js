@@ -5,17 +5,10 @@ import * as homeController from 'homeController';
 import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
 import * as userController from 'userController';
+import * as lobbyCreationController from 'lobbyCreationController';
 import * as notFoundController from 'notFoundController';
 
-import User from 'userAuthentication';
-
-User.initAuthStatusChange();
-
-$('#sign-in-btn').click(() => {
-    if ($('#sign-in-btn').text() === 'Sign out') {
-        User.signOut();
-    };
-})
+import UserAuthentificatior from 'userAuthentificatior';
 
 export const navigo = (() => {
     const router = (() => {
@@ -27,6 +20,8 @@ export const navigo = (() => {
     })();
 
     function initRoutes() {
+
+        //UserAuthentificatior.initAuthStatusChange();
         router
             .on('/', () => {
                 $.when(homeController.loadHandlebars())
@@ -40,21 +35,25 @@ export const navigo = (() => {
 
                     });
             })
+            .on('/register', () => {
+                $.when(registerUserController.loadHandlebars())
+                    .then(() => {
+
+                    });
+            })
             .on('/signin', () => {
                 $.when(signInUserController.loadHandlebars())
                     .then(() => {
 
                     });
             })
-            .on('/user/:id', () => {
+            .on('/user', () => {
                 $.when(userController.loadHandlebars())
                     .then();
             })
-            .on('/register', () => {
-                $.when(registerUserController.loadHandlebars())
-                    .then(() => {
-
-                    });
+            .on('/createLobby', () => {
+                $.when(lobbyCreationController.loadHandlebars())
+                    .then();
             })
             .resolve();
 
