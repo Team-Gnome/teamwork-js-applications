@@ -1,6 +1,9 @@
 .hidden {
     display: none;
 }
+.btn.btn-default.navbar-btn{
+   padding-top: 2px;
+}
 
 .btn-nav-container{
     position: absolute;
@@ -8,6 +11,7 @@
 }
 
 .navbar-text{
+    margin: 0;
     margin-right: 20px;
 }
 
@@ -27,17 +31,26 @@
     right: 0;
 }
 
+.btn-group label{
+    width: 150px;
+}
+
+.submit-btn{
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    margin-top: 30px;
+}
+
 /*-------------------------------*/
 /*     Sidebar nav styles        */
 /*-------------------------------*/
-
 .sidebar-nav {
     position: absolute;
     width: 220px;
     padding: 0;
     list-style: none;
     height: 100%;
-    /*background-color: #7F8795;*/
 }
 
 .sidebar-nav li {
@@ -111,15 +124,4 @@
     color: #fff;
     text-decoration: none;
     background-color: transparent;
-}
-
-.btn-group label{
-    width: 150px;
-}
-
-.submit-btn{
-    display: block;
-    margin: 0 auto;
-    width: 150px;
-    margin-top: 30px;
 }
