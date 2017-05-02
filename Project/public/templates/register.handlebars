@@ -1,12 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+<nav class="navbar navbar-inverse bg-inverse">
+    <form class="form-inline">
         <a class="navbar-brand" href="#/home">Gnome-Team</a>
 
-        <a class="btn btn-default navbar-btn float-right" href="#/signin" id="sign-in-btn">Sign in</a>
+        <div class="btn-nav-container">
+            <a class="navbar-text" id="login-navbar-status"> You are not currently logged in.
+            </a>
 
-        <p class="navbar-text navbar-right" id="login-navbar-status">
-        </p>
-    </div>
+            <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
+        </div>
+    </form>
 </nav>
 
 <div class="registration-form">
@@ -34,5 +36,5 @@
         </div>
     </form>
 
-    <button class="btn btn-primary" id="send-btn-register">Register</button>
+    <button class="btn btn-primary submit-btn" id="send-btn-register">Register</button>
 </div>
