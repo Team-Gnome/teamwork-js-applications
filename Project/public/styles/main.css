@@ -7,6 +7,7 @@
 
 .btn-nav-container{
     position: absolute;
+    float: right;
     right: 10px;
 }
 
@@ -47,13 +48,14 @@
 /*-------------------------------*/
 .sidebar-nav {
     position: absolute;
-    width: 220px;
+    width: 260px;
     padding: 0;
     list-style: none;
     height: 100%;
 }
 
 .sidebar-nav li {
+    text-align: center;
     position: relative; 
     line-height: 20px;
     display: inline-block;
@@ -67,7 +69,7 @@
     left: 0;
     z-index: -1;
     height: 100%;
-    width: 5px;
+    width: 10px;
     background-color: #1c1c1c;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
