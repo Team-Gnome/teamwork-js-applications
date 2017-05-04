@@ -11,7 +11,8 @@ SystemJS.config({
         'registerUserController': 'scripts/controllers/registerUserController.js',
         'signInUserController': 'scripts/controllers/signInUserController.js',
         'userController': 'scripts/controllers/userController.js',
-        'lobbyCreationController': 'scripts/controllers/lobby-creation-controller.js',
+        'lobbyCreationController': 'scripts/controllers/create-lobby-controller.js',
+        'joinLobbyController': 'scripts/controllers/join-lobby-controller.js',
         'notFoundController': 'scripts/controllers/notFoundController.js',
         'templates': 'scripts/templates.js',
         'firebaseConfig': 'scripts/configs/firebase-config.js',
@@ -19,6 +20,7 @@ SystemJS.config({
         'userAuthentificatior': 'scripts/firebase/userAuthentificatior.js',
         'router': 'scripts/configs/router-config.js',
         'user': 'scripts/models/user.js',
+        'lobby': 'scripts/models/lobby.js',
 
         // Library files
         'jquery': 'node_modules/jquery/dist/jquery.min.js',
