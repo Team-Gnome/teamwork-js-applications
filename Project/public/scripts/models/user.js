@@ -33,13 +33,4 @@ export default class User {
     get email() {
         return this._email;
     }
-
-    toJSON() {
-        return {
-            username: this.username,
-            firstname: this.firstname,
-            lastname: this.lastname,
-            email: this.email
-        }
-    }
 };
