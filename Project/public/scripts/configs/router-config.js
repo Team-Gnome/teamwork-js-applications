@@ -5,11 +5,12 @@ import * as homeController from 'homeController';
 import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
 import * as userController from 'userController';
-import * as lobbyCreationController from 'lobbyCreationController';
+import * as lobbyCreationController from 'createLobbyController';
 import * as joinLobbyController from 'joinLobbyController';
 import * as notFoundController from 'notFoundController';
 
-import UserAuthentificatior from 'userAuthentificatior';
+import events from 'events';
+import * as loadingScreenHandler from 'loadingScreenHandler';
 
 export const navigo = (() => {
     const router = (() => {
@@ -21,44 +22,50 @@ export const navigo = (() => {
     })();
 
     function initRoutes() {
-
-        //UserAuthentificatior.initAuthStatusChange();
         router
             .on('/', () => {
-                $.when(homeController.loadHandlebars())
-                    .then(() => {
-
-                    });
+                homeController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/home', () => {
-                $.when(homeController.loadHandlebars())
-                    .then(() => {
-
-                    });
+                homeController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/register', () => {
-                $.when(registerUserController.loadHandlebars())
-                    .then(() => {
-
-                    });
+                registerUserController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.register(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/signin', () => {
-                $.when(signInUserController.loadHandlebars())
-                    .then(() => {
-
-                    });
+                signInUserController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signin(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/user', () => {
-                $.when(userController.loadHandlebars())
-                    .then();
+                userController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/createLobby', () => {
-                $.when(lobbyCreationController.loadHandlebars())
-                    .then();
+                lobbyCreationController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { events.createLobby() })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/joinLobby', () => {
-                $.when(joinLobbyController.loadHandlebars())
-                    .then();
+                joinLobbyController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { events.joinLobby(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
             })
             .resolve();
 
