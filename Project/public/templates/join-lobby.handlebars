@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col col-md-12">
+        <nav class="navbar navbar-inverse bg-inverse">
+
+            <div class="row">
+                <div class="col col-md-2">
+                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
+                </div>
+
+                <div class="col col-md-10">
+                    <div class="btn-nav-container">
+                        <a class="navbar-text" id="login-navbar-status" href="#/user">
+                        </a>
+
+                        <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-2">
+        <nav class="nav flex-column">
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="nav-link" href="#/createLobby">Create Lobby</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#/joinLobby">Join Lobby</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Your Team</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-6 col-md-10">
+        <div class="list-group">
+            {{#each lobbies}}
+            <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{this._lobbyname}}</h5>
+                    <small>{{this._datetime}}</small>
+                </div>
+                <p class="mb-1">{{this._sport}}</p>
+                <p class="mb-1">{{this._location}}</p>
+                <p class="mb-1">{{this._mode}}</p>
+                <small></small>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
