@@ -1,63 +1,84 @@
-<nav class="navbar navbar-inverse bg-inverse">
+<div class="row">
+    <div class="col col-md-12">
+        <nav class="navbar navbar-inverse bg-inverse">
 
-    <form class="form-inline">
-        <a class="navbar-brand" href="#/home">Gnome-Team</a>
+            <div class="row">
+                <div class="col col-md-2">
+                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
+                </div>
 
-        <div class="btn-nav-container">
-            <a class="navbar-text" id="login-navbar-status" href="#/user">
-            </a>
+                <div class="col col-md-10">
+                    <div class="btn-nav-container">
+                        <a class="navbar-text" id="login-navbar-status" href="#/user">
+                        </a>
 
-            <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
-        </div>
-    </form>
-</nav>
+                        <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
 
-<nav class="nav flex-column">
-    <ul class="sidebar-nav">
-        <li>
-            <a class="nav-link" href="#/createLobby">Create Lobby</a>
-        </li>
-        <li>
-            <a class="nav-link" href="#">Join Lobby</a>
-        </li>
-        <li>
-            <a class="nav-link" href="#">Team</a>
-        </li>
-        <li>
-            <a class="nav-link" href="#">Events</a>
-        </li>
-    </ul>
-</nav>
+<div class="row">
+    <div class="col col-md-2">
+        <nav class="nav flex-column">
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="nav-link" href="#/createLobby">Create Lobby</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#/joinLobby">Join Lobby</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Your Team</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-<div class="registration-form">
-    <form>
-        <div class="form-group">
-            <label for="input-firstname">Lobby name</label>
-            <input type="text" class="form-control" id="input-firstname" placeholder="Enter lobby name">
-        </div>
-        <div class="form-group">
-            <label for="input-lastname">Sport</label>
-            <input type="text" class="form-control" id="input-lastname" placeholder="Enter sport">
-        </div>
-        <div class="form-group">
-            <label for="input-username">Location</label>
-            <input type="text" class="form-control" id="input-username" placeholder="Enter desired location">
-        </div>
-        <div class="form-group">
-            <label for="input-password">Time</label>
-            <input type="password" class="form-control" id="input-password" placeholder="">
-        </div>
+    <div class="col col-md-8">
+        <div class="registration-form">
+            <form>
+                <div class="form-group">
+                    <label for="input-lobbyname">Lobby name</label>
+                    <input type="text" class="form-control" id="input-lobbyname" placeholder="Enter lobby name">
+                </div>
 
-        <small id="help" class="form-text text-muted">Choose for what are you searching for:</small>
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> Team
+                <div class="form-group">
+                    <label for="sport-select">Select sport</label>
+                    <select class="form-control" id="sport-select">
+                <option>Football</option>
+                <option>Basketball</option>
+                <option>Volleyball</option>
+                <option>Tennis</option>
+            </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="input-location">Location</label>
+                    <input type="text" class="form-control" id="input-location" placeholder="Enter desired location">
+                </div>
+                <div class="form-group">
+                    <label for="input-datetime">Time</label>
+                    <input class="form-control" type="datetime-local" value="2017-01-01T00:00:00" id="input-datetime">
+                </div>
+
+                <small id="help" class="form-text text-muted">Choose for what are you searching for:</small>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" value="Team" checked> Team
             </label>
-            <label class="btn btn-primary">
-                <input type="radio" name="options" id="option2" autocomplete="off"> Partner
+                    <label class="btn btn-primary">
+                <input type="radio" name="options" id="option2" autocomplete="off" value="Partner"> Partner
             </label>
-        </div>
-    </form>
+                </div>
+            </form>
 
-    <button class="btn btn-primary submit-btn" id="create-lobby-btn">Create</button>
+            <button class="btn btn-primary submit-btn" id="create-lobby-btn">Create</button>
+        </div>
+    </div>
 </div>

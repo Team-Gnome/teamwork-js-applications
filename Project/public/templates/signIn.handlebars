@@ -1,28 +1,40 @@
-<nav class="navbar navbar-inverse bg-inverse">
+<div class="row">
+    <div class="col col-md-12">
+        <nav class="navbar navbar-inverse bg-inverse">
 
-    <form class="form-inline">
-        <a class="navbar-brand" href="#/home">Gnome-Team</a>
+            <div class="row">
+                <div class="col col-md-2">
+                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
+                </div>
 
-        <div class="btn-nav-container">
-            <p class="navbar-text" id="login-navbar-status">You are not currently logged in.
-            </p>
+                <div class="col col-md-10">
+                    <div class="btn-nav-container">
+                        <p class="navbar-text" id="login-navbar-status">You are not currently logged in.
+                        </p>
 
-            <a class="btn btn-default navbar-btn" href="#/register" id="register-btn">Register</a>
+                        <a class="btn btn-default navbar-btn" href="#/register" id="register-btn">Register</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6 col-md-12">
+        <div class="sign-form">
+            <form>
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+            </form>
+
+            <button class="btn btn-primary submit-btn" id="send-sign-in-btn">Sign in</button>
         </div>
-    </form>
-</nav>
-
-<div class="sign-form">
-    <form>
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-    </form>
-
-    <button class="btn btn-primary submit-btn" id="send-sign-in-btn">Sign in</button>
+    </div>
 </div>
