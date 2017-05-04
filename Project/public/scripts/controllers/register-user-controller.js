@@ -5,9 +5,10 @@ const $root = $('#root');
 
 export function loadHandlebars(params) {
     return new Promise((resolve, reject) => {
-        resolve(loadTemplate('lobby-creation')
+        resolve(loadTemplate('register')
             .then(template => {
-                $root.html(template);
-            }));
+                $root.html(template)
+            })
+        );
     });
 };

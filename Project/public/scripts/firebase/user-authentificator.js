@@ -1,12 +1,13 @@
-import * as firebase from 'firebase';
 import { navigo } from 'router';
+import * as firebase from 'firebase';
+
+import User from 'user';
+import * as data from 'data';
+import * as inputDataHandler from 'inputDataHandler';
 import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
-import * as data from 'data';
-import User from 'user';
 
-export default class UserAuthentificatior {
-
+export default class UserAuthentificator {
     static currentUserData() {
         const email = firebase.auth().currentUser.email;
         const uid = firebase.auth().currentUser.uid;
@@ -18,7 +19,7 @@ export default class UserAuthentificatior {
     };
 
     static registerUser(onSuccess, onError) {
-        const userData = registerUserController.getUserInputData();
+        const userData = inputDataHandler.getUserInputData();
 
         firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
             .catch(function (error) {
@@ -33,8 +34,8 @@ export default class UserAuthentificatior {
                         alert('The password is too weak.');
                     } else {
                         alert(errorMessage);
-                    }
-                }
+                    };
+                };
             })
             .then(() => {
                 let uid;
@@ -49,13 +50,10 @@ export default class UserAuthentificatior {
                     .then(() => {
                         navigo.router.navigate('#/user');
                     });
-                // .catch((error) => {
-
-                // });
 
                 if (onSuccess) {
                     onSuccess();
-                }
+                };
             });
     };
 
@@ -63,33 +61,6 @@ export default class UserAuthentificatior {
         firebase.auth().currentUser.sendEmailVerification()
             .then(() => alert(`Verification e-mail sent to ${User.currentUser().email}`))
             .catch(() => alert('Something went wrong. Please try again!'));
-    };
-
-    static initAuthStatusChange() {
-        return new Promise((resolve, reject) => {
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    const email = user.email;
-                    const emailVerified = user.emailVerified;
-
-                    $('#login-navbar-status').html(`You are currently logged with <a href="#/user">${email}</a>`);
-                    $('#register-btn').addClass('hidden');
-                    $('#sign-in-btn').text('Sign out');
-
-                    if (!emailVerified) {
-                        $('#verify-btn').removeClass('hidden');
-                        $('#verify-btn').click(User.verifyAcocunt);
-                    }
-
-                    resolve(user.uid);
-                }
-                else {
-                    $('#login-navbar-status').text('You are not currently logged in.');
-                    $('#sign-in-btn').text('Sign in');
-                    $('#register-btn').removeClass('hidden');
-                }
-            })
-        })
     };
 
     static verifyAcocunt() {
@@ -120,7 +91,7 @@ export default class UserAuthentificatior {
             .then(() => {
                 if (onSuccess) {
                     onSuccess();
-                }
+                };
             });
     };
-}
+};

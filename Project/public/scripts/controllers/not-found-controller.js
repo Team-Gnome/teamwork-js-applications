@@ -3,8 +3,8 @@ import loadTemplate from 'templates';
 const $root = $('#root');
 
 export function loadHandlebars(params) {
-    loadTemplate('notFound')
+    loadTemplate('not-found')
         .then(template => {
             $root.html(template);
         });
-}
+};

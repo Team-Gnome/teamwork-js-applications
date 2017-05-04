@@ -5,7 +5,7 @@ const cacheObj = {};
 export default function loadTemplate(templateName, data) {
     if (cacheObj.hasOwnProperty(templateName)) {
         return Promise.resolve(cacheObj[templateName]);
-    }
+    };
 
     return $.get(`templates/${templateName}.handlebars`)
         .then(function (src) {
@@ -14,4 +14,4 @@ export default function loadTemplate(templateName, data) {
 
             return Promise.resolve(compiledTemplate);
         });
-}
+};
