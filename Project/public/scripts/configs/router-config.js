@@ -6,6 +6,7 @@ import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
 import * as userController from 'userController';
 import * as lobbyCreationController from 'lobbyCreationController';
+import * as joinLobbyController from 'joinLobbyController';
 import * as notFoundController from 'notFoundController';
 
 import UserAuthentificatior from 'userAuthentificatior';
@@ -55,13 +56,17 @@ export const navigo = (() => {
                 $.when(lobbyCreationController.loadHandlebars())
                     .then();
             })
+            .on('/joinLobby', () => {
+                $.when(joinLobbyController.loadHandlebars())
+                    .then();
+            })
             .resolve();
 
         router.notFound(function () {
             notFoundController.loadHandlebars();
         })
             .resolve();
-    }
+    };
 
     return {
         initRoutes: initRoutes,

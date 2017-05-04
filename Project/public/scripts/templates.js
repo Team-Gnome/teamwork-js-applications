@@ -7,10 +7,11 @@ export default function loadTemplate(templateName, data) {
         return Promise.resolve(cacheObj[templateName]);
     }
 
-    return $.get(`templates/${templateName}.handlebars`).then(function (src) {
-        const compiledTemplate = Handlebars.compile(src)(data);
-        cacheObj[templateName] = compiledTemplate;
+    return $.get(`templates/${templateName}.handlebars`)
+        .then(function (src) {
+            const compiledTemplate = Handlebars.compile(src)(data);
+            cacheObj[templateName] = compiledTemplate;
 
-        return Promise.resolve(compiledTemplate);
-    });
+            return Promise.resolve(compiledTemplate);
+        });
 }

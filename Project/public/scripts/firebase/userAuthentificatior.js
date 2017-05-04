@@ -7,15 +7,17 @@ import User from 'user';
 
 export default class UserAuthentificatior {
 
-    static currentUser() {
+    static currentUserData() {
+        const email = firebase.auth().currentUser.email;
+        const uid = firebase.auth().currentUser.uid;
+
         return {
-            email: firebase.auth().currentUser.email,
-            uid: firebase.auth().currentUser.uid
-        }
+            email: email,
+            uid: uid,
+        };
     };
 
     static registerUser(onSuccess, onError) {
-
         const userData = registerUserController.getUserInputData();
 
         firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
@@ -38,7 +40,7 @@ export default class UserAuthentificatior {
                 let uid;
                 firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
                     .then(() => {
-                        uid = this.currentUser().uid;
+                        uid = this.currentUserData().uid;
                     })
                     .then(() => {
                         const user = new User(userData.username, userData.firstname, userData.lastname, userData.email);
@@ -47,6 +49,9 @@ export default class UserAuthentificatior {
                     .then(() => {
                         navigo.router.navigate('#/user');
                     });
+                // .catch((error) => {
+
+                // });
 
                 if (onSuccess) {
                     onSuccess();

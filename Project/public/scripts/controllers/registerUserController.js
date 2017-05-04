@@ -1,5 +1,4 @@
 import loadTemplate from 'templates';
-import { addNewUserInDatabase } from 'data';
 import UserAuthentificatior from 'userAuthentificatior';
 
 const $root = $('#root');
