@@ -25,5 +25,8 @@
     "navigo": "^4.6.2",
     "systemjs": "^0.20.12",
     "systemjs-plugin-babel": "0.0.21"
+  },
+  "devDependencies": {
+    "font-awesome": "^4.7.0"
   }
 }
