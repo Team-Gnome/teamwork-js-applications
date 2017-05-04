@@ -7,20 +7,34 @@ SystemJS.config({
 
         // Application files
         'main': 'scripts/main.js',
-        'homeController': 'scripts/controllers/homeController.js',
-        'registerUserController': 'scripts/controllers/registerUserController.js',
-        'signInUserController': 'scripts/controllers/signInUserController.js',
-        'userController': 'scripts/controllers/userController.js',
-        'lobbyCreationController': 'scripts/controllers/create-lobby-controller.js',
-        'joinLobbyController': 'scripts/controllers/join-lobby-controller.js',
-        'notFoundController': 'scripts/controllers/notFoundController.js',
         'templates': 'scripts/templates.js',
+
+        // Configs
         'firebaseConfig': 'scripts/configs/firebase-config.js',
-        'data': 'scripts/firebase/data.js',
-        'userAuthentificatior': 'scripts/firebase/userAuthentificatior.js',
         'router': 'scripts/configs/router-config.js',
+
+        // Firebase data
+        'data': 'scripts/firebase/data.js',
+        'userAuthentificator': 'scripts/firebase/user-authentificator.js',
+
+        // Models
         'user': 'scripts/models/user.js',
         'lobby': 'scripts/models/lobby.js',
+
+        // Controllers
+        'homeController': 'scripts/controllers/home-controller.js',
+        'registerUserController': 'scripts/controllers/register-user-controller.js',
+        'signInUserController': 'scripts/controllers/sign-in-user-controller.js',
+        'userController': 'scripts/controllers/user-controller.js',
+        'createLobbyController': 'scripts/controllers/create-lobby-controller.js',
+        'joinLobbyController': 'scripts/controllers/join-lobby-controller.js',
+        'notFoundController': 'scripts/controllers/not-found-controller.js',
+
+        // Utils
+        'events': 'scripts/utils/events.js',
+        'inputDataHandler': 'scripts/utils/input-data-handler.js',
+        'loadingScreenHandler': 'scripts/utils/loading-screen-handler.js',
+        'validator': 'scripts/utils/validator.js',
 
         // Library files
         'jquery': 'node_modules/jquery/dist/jquery.min.js',
