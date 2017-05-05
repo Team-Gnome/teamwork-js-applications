@@ -6,7 +6,9 @@ import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
 import * as userController from 'userController';
 import * as lobbyCreationController from 'createLobbyController';
-import * as joinLobbyController from 'joinLobbyController';
+import * as listLobbiesController from 'listLobbiesController';
+import * as joinedLobbiesController from 'joinedLobbiesController';
+import * as createdLobbiesController from 'createdLobbiesController';
 import * as notFoundController from 'notFoundController';
 
 import events from 'events';
@@ -61,10 +63,24 @@ export const navigo = (() => {
                     .then(() => { loadingScreenHandler.showContent(); })
             })
             .on('/joinLobby', () => {
-                joinLobbyController.loadHandlebars()
+                listLobbiesController.loadHandlebars()
                     .then(() => { loadingScreenHandler.initContentChange(); })
                     .then(() => { events.signout(); })
                     .then(() => { events.joinLobby(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
+            })
+            .on('/joinedLobbies', () => {
+                joinedLobbiesController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { events.leaveLobby(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
+            })
+            .on('/createdLobbies', () => {
+                createdLobbiesController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { events.deleteLobby(); })
                     .then(() => { loadingScreenHandler.showContent(); })
             })
             .resolve();
