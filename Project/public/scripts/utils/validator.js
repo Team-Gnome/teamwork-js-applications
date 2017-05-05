@@ -68,8 +68,6 @@ const validator = (function () {
         const confirmPassword = data.confirmPassword;
         const email = data.email;
 
-        console.log(firstname);
-
         validateName(firstname);
         validateName(lastname);
         validateUsername(username);
