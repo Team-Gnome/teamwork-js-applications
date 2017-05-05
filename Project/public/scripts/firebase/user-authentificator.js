@@ -7,6 +7,8 @@ import * as inputDataHandler from 'inputDataHandler';
 import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
 
+const LOCALSTORAGE_AUTH_KEY_NAME = 'authkey';
+
 export default class UserAuthentificator {
     static currentUserData() {
         const email = firebase.auth().currentUser.email;
@@ -18,42 +20,21 @@ export default class UserAuthentificator {
         };
     };
 
-    static registerUser(onSuccess, onError) {
+    static registerUser() {
         const userData = inputDataHandler.getUserInputData();
+        const userEmail = userData.email;
+        const userPassword = userData.password;
 
-        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
-            .catch(function (error) {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
-                if (onError) {
-                    onError(error);
-                }
-                else {
-                    if (errorCode == 'auth/weak-password') {
-                        alert('The password is too weak.');
-                    } else {
-                        alert(errorMessage);
-                    };
-                };
-            })
+        firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
             .then(() => {
-                let uid;
-                firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
-                    .then(() => {
-                        uid = this.currentUserData().uid;
-                    })
+                this.signIn(userEmail, userPassword)
                     .then(() => {
                         const user = new User(userData.username, userData.firstname, userData.lastname, userData.email);
-                        data.addNewUserInDatabase(uid, user);
-                    })
-                    .then(() => {
-                        navigo.router.navigate('#/user');
+                        data.addNewUserInDatabase(user);
                     });
-
-                if (onSuccess) {
-                    onSuccess();
-                };
+            })
+            .then(() => {
+                navigo.router.navigate('#/user');
             });
     };
 
@@ -71,6 +52,8 @@ export default class UserAuthentificator {
     static signOut() {
         firebase.auth().signOut()
             .catch(() => alert('Something went wrong. Please try again!'));
+
+        localStorage.removeItem(LOCALSTORAGE_AUTH_KEY_NAME);
     };
 
     static signIn(email, password, onSuccess, onError) {
@@ -89,9 +72,7 @@ export default class UserAuthentificator {
                 }
             })
             .then(() => {
-                if (onSuccess) {
-                    onSuccess();
-                };
+                localStorage.setItem(LOCALSTORAGE_AUTH_KEY_NAME, this.currentUserData().uid);
             });
     };
 };
