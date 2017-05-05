@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col col-md-12">
+        <nav class="navbar navbar-inverse bg-inverse">
+
+            <div class="row">
+                <div class="col col-md-2">
+                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
+                </div>
+
+                <div class="col col-md-10">
+                    <div class="btn-nav-container">
+                        <a class="navbar-text" id="login-navbar-status" href="#/user">
+                        </a>
+
+                        <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-2">
+        <nav class="nav flex-column">
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="nav-link" href="#/createLobby">Create Lobby</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#/joinLobby">Join Lobby</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Your Team</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Your Lobbies<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#/createdLobbies">Created Lobbies</a></li>
+                        <li><a href="#/joinedLobbies">Joined Lobbies</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-6 col-md-10">
+        {{#if lobbies}}
+        <ul class="lobbies-list">
+            {{#each lobbies}}
+            <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{this._lobbyname}}</h5>
+                    <small>{{this._datetime}}</small>
+                </div>
+                <p class="mb-1"><span class="bolder">Sport:</span> {{this._sport}}</p>
+                <p class="mb-1"><span class="bolder">Location:</span>{{this._location}}</p>
+                <p class="mb-1"><span class="bolder">Mode:</span> {{this._mode}}</p>
+                <small><span class="bolder">Created by</span> {{this._author}}</small>
+                <button type="button" class="btn btn-primary join-lobby-btn lobby-btn">Join</button>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <div class="alert alert-info" role="alert">
+            <strong>Heads up!</strong> There are no lobbies right now. Click <a href="#/createLobby"><strong>here</strong></a>            to create the first one.
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-12">
+        <footer class="footer bg-inverse">
+            <div class="brand-icons">
+                <i class="fa fa-facebook fa-2x fa-fw"></i>
+                <i class="fa fa-twitter fa-2x fa-fw"></i>
+                <i class="fa fa-github fa-2x fa-fw"></i>
+                <i class="fa fa-instagram fa-2x fa-fw"></i>
+            </div>
+        </footer>
+    </div>
+</div>
