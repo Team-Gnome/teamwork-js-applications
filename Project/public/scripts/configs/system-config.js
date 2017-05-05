@@ -27,7 +27,9 @@ SystemJS.config({
         'signInUserController': 'scripts/controllers/sign-in-user-controller.js',
         'userController': 'scripts/controllers/user-controller.js',
         'createLobbyController': 'scripts/controllers/create-lobby-controller.js',
-        'joinLobbyController': 'scripts/controllers/join-lobby-controller.js',
+        'listLobbiesController': 'scripts/controllers/list-lobbies-controller.js',
+        'joinedLobbiesController': 'scripts/controllers/joined-lobbies-controller.js',
+        'createdLobbiesController': 'scripts/controllers/created-lobbies-controller.js',
         'notFoundController': 'scripts/controllers/not-found-controller.js',
 
         // Utils
