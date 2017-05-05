@@ -1,6 +1,8 @@
 import loadTemplate from 'templates';
-import userAuthentificator from 'userAuthentificator';
 import * as data from 'data';
+
+import * as joinedLobbiesController from 'joinedLobbiesController';
+import * as createdLobbiesController from 'createdLobbiesController';
 
 const $root = $('#root');
 
@@ -11,7 +13,7 @@ export function loadHandlebars(params) {
         data.getAllLobies('/lobbies')
             .then((lobbies) => {
                 if (lobbies === null) {
-                    resolve(loadTemplate('joined-lobbies')
+                    resolve(loadTemplate('list-lobbies')
                         .then(template => {
                             $root.html(template);
                         }));

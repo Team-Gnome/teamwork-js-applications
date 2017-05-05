@@ -45,8 +45,7 @@ const events = {
             const uid = localStorage['authkey'];
 
             return db.ref('/users/' + uid)
-                .once('value')
-                .then(function (snapshot) {
+                .once('value', function (snapshot) {
                     const user = snapshot.val();
 
                     const lobby = new Lobby(
@@ -63,9 +62,6 @@ const events = {
                 .then(() => {
                     navigo.router.navigate('#/joinLobby');
                 })
-                .then(() => {
-                    location.reload();
-                });
         });
     },
     joinLobby: () => {
@@ -111,13 +107,12 @@ const events = {
                     callback();
                 })
                 .then(() => {
-                    location.reload();
+                    navigo.router.navigate('#/joinedLobbies');
                 })
         });
     },
     deleteLobby: () => {
         $('.delete-lobby-btn').click((ev) => {
-            console.log('here')
             const $target = $(ev.target);
             const lobbyName = $target
                 .parent()
@@ -141,7 +136,7 @@ const events = {
                     callback();
                 })
                 .then(() => {
-                    location.reload();
+                    navigo.router.navigate('/createdLobbies');
                 });
         });
     }

@@ -1,6 +1,5 @@
-import loadTemplate from 'templates';
-import userAuthentificator from 'userAuthentificator';
 import * as data from 'data';
+import loadTemplate from 'templates';
 
 const $root = $('#root');
 const uid = localStorage['authkey'];

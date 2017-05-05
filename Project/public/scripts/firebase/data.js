@@ -1,11 +1,8 @@
 import { firebaseDb as db } from 'firebaseConfig';
-import * as inputDataHandler from 'inputDataHandler';
-import { getLobbyInputData } from 'createLobbyController';
 
 const defaultRef = db.ref();
 
 export function addNewUserInDatabase(user) {
-
     const uid = localStorage['authkey'];
     const userObj = {};
     const usersRef = defaultRef.child('users/' + uid);
@@ -17,7 +14,6 @@ export function addNewUserInDatabase(user) {
 
 export function addNewLobbyInDatabase(lobby) {
     const lobbiesRef = defaultRef.child('lobbies');
-
     return new Promise((resolve, reject) => {
         resolve(lobbiesRef.push(lobby));
     });
@@ -94,4 +90,8 @@ export function getAllLobies(ref) {
                 resolve(lobbies);
             });
     });
+};
+
+export function listenForChanges(path) {
+    return db.ref(path).once('value');
 };

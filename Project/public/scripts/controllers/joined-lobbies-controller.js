@@ -1,5 +1,4 @@
 import loadTemplate from 'templates';
-import userAuthentificator from 'userAuthentificator';
 import * as data from 'data';
 
 const $root = $('#root');
