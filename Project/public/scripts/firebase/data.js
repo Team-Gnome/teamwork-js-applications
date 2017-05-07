@@ -8,7 +8,7 @@ export function addNewUserInDatabase(user) {
     const usersRef = defaultRef.child('users/' + uid);
 
     return new Promise((resolve, reject) => {
-        usersRef.set(user);
+        resolve(usersRef.set(user));
     });
 };
 
@@ -20,6 +20,7 @@ export function addNewLobbyInDatabase(lobby) {
 };
 
 export function deleteLobbyFromDatabase(lobby) {
+    console.log(lobby)
     return new Promise((resolve, reject) => {
         const lobbiesRef = defaultRef.child(`lobbies`)
             .once('value', function (snapshot) {
@@ -55,7 +56,8 @@ export function deleteJoinedLobbyFromUserDatabase(lobby) {
         const lobbiesRef = defaultRef.child(`users/${uid}/joinedLobbies`)
             .once('value', function (snapshot) {
                 snapshot.forEach(function (snap) {
-                    if (lobby._lobbyname === snap.val()._lobbyname) {
+                    if (lobby._lobbyname === snap.val()._lobbyname
+                        && lobby._author === snap.val()._author) {
                         resolve(() => {
                             snap.ref.remove();
                         });
@@ -71,7 +73,8 @@ export function deleteCreatedLobbyFromUserDatabase(lobby) {
         const lobbiesRef = defaultRef.child(`users/${uid}/createdLobbies`)
             .once('value', function (snapshot) {
                 snapshot.forEach(function (snap) {
-                    if (lobby._lobbyname === snap.val()._lobbyname) {
+                    if (lobby._lobbyname === snap.val()._lobbyname
+                        && lobby._author === snap.val()._author) {
                         resolve(() => {
                             snap.ref.remove();
                         });
@@ -81,7 +84,7 @@ export function deleteCreatedLobbyFromUserDatabase(lobby) {
     });
 };
 
-export function getAllLobies(ref) {
+export function getData(ref) {
     return new Promise((resolve, reject) => {
         db.ref(ref)
             .once('value')
@@ -92,6 +95,34 @@ export function getAllLobies(ref) {
     });
 };
 
-export function listenForChanges(path) {
-    return db.ref(path).once('value');
+export function getForbidenLobbies() {
+    return new Promise((resolve, reject) => {
+        const uid = localStorage['authkey'];
+
+        const p1 = getData(`/users/${uid}/createdLobbies`)
+            .then((lobbies) => {
+                return lobbies
+            })
+        const p2 = getData(`/users/${uid}/joinedLobbies`)
+            .then((lobbies) => {
+                return lobbies
+            });
+
+        const arr = [];
+
+        Promise.all([p1, p2]).then(values => {
+            values.forEach((value) => {
+                if (value !== null) {
+                    const lobbies = Object.values(value);
+
+                    lobbies.forEach((lobby) => {
+                        arr.push(lobby);
+                    });
+                }
+            });
+
+            resolve(arr);
+        });
+    });
 };
+
