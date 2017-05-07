@@ -1,70 +1,77 @@
 <div class="row">
-    <div class="col col-md-12">
-        <nav class="navbar navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-inverse">
+        <div class="col-2 col-sm-2">
+            <a class="navbar-brand" href="#/home"><strong>Gnome-Team</strong></a>
+        </div>
+        <div class="col-10 col-sm-10 btn-container">
+            <div class="navbar-container">
+                <a class="btn btn-primary btn-nav btn-responsive" href="#/register" id="register-btn">Register</a>
+                <a class="btn btn-primary btn-nav btn-responsive" href="#/signin" id="sign-in-btn">Sign in</a>
 
-            <div class="row">
-                <div class="col col-md-2">
-                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
-                </div>
-
-                <div class="col col-md-10">
-                    <div class="btn-nav-container">
-                        <a class="navbar-text" id="login-navbar-status" href="#/user">
-                        </a>
-
-                        <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
-                    </div>
-                </div>
+                <a class="navbar-text" id="login-navbar-status" href="#/user">
+                </a>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </div>
 
+<h2><span>Let the games <br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;begin!</span></h2>
+
 <div class="row">
-    <div class="col-6 col-md-12">
+    <div class="col col-md-12">
         <div class="registration-form">
-            <form>
+            <div>
                 <div class="form-group">
                     <label for="input-firstname">First name</label>
                     <input type="text" class="form-control" id="input-firstname" placeholder="First Name">
+                    <small id="firstname-help" class="form-text text-muted">The name must include only letters.</small>
                 </div>
                 <div class="form-group">
                     <label for="input-lastname">Last name</label>
                     <input type="text" class="form-control" id="input-lastname" placeholder="Last Name">
+                    <small id="lastname-help" class="form-text text-muted">The name must include only letters.</small>
                 </div>
                 <div class="form-group">
                     <label for="input-username">Username</label>
                     <input type="text" class="form-control" id="input-username" placeholder="Username">
+                    <small id="username-help" class="form-text text-muted">The username must be between 6 and 10 symbols and include only letters, numbers and underscores.</small>
                 </div>
                 <div class="form-group">
                     <label for="input-password">Password</label>
                     <input type="password" class="form-control" id="input-password" placeholder="Password">
+                    <small id="password-help" class="form-text text-muted">The password must be at least 6 symbols long and contain at least one uppercase, lowercase and a number.</small>
                 </div>
                 <div class="form-group">
                     <label for="input-confirm-password">Confirm Password</label>
                     <input type="password" class="form-control" id="input-confirm-password" placeholder="Confirm Password">
+                    <small id="password-help" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                     <label for="input-email">Email address</label>
                     <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
-            </form>
-
-            <button class="btn btn-primary submit-btn" id="send-btn-register">Register</button>
+            </div>
+            <button class="btn btn-primary submit-btn btn-responsive" id="send-btn-register">Register</button>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col col-md-12">
-        <footer class="footer bg-inverse">
+<div class="row navbar footer-navbar bg-inverse">
+    <div class="row">
+        <div class="col col-md-12">
             <div class="brand-icons">
-                <i class="fa fa-facebook fa-2x fa-fw"></i>
-                <i class="fa fa-twitter fa-2x fa-fw"></i>
+                <a data-href="https://gnome-teamwork-e0bde.firebaseapp.com/" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgnome-teamwork-e0bde.firebaseapp.com%2F&amp;src=sdkpreparse"><i class="fa fa-facebook fa-2x fa-fw"></i></a>
+                <a><i class="fa fa-twitter fa-2x fa-fw"></i></a>
                 <i class="fa fa-github fa-2x fa-fw"></i>
                 <i class="fa fa-instagram fa-2x fa-fw"></i>
             </div>
-        </footer>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="footer-copyright">© 2017 Copyright: <a href="https://github.com/Team-Gnome/teamwork-js-applications"> Gnome-Team </a></div>
+        </div>
     </div>
 </div>

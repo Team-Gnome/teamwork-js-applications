@@ -1,23 +1,18 @@
 <div class="row">
-    <div class="col col-md-12">
-        <nav class="navbar navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-inverse">
+        <div class="col-2 col-sm-2">
+            <a class="navbar-brand" href="#/home"><strong>Gnome-Team</strong></a>
+        </div>
+        <div class="col-10 col-sm-10 btn-container">
+            <div class="navbar-container">
+                <a class="btn btn-primary btn-nav btn-responsive" href="#/register" id="register-btn">Register</a>
+                <a class="btn btn-primary btn-nav btn-responsive" href="#/signin" id="sign-in-btn">Sign in</a>
 
-            <div class="row">
-                <div class="col col-md-2">
-                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
-                </div>
-
-                <div class="col col-md-10">
-                    <div class="btn-nav-container">
-                        <a class="navbar-text" id="login-navbar-status" href="#/user">
-                        </a>
-
-                        <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
-                    </div>
-                </div>
+                <a class="navbar-text" id="login-navbar-status" href="#/user">
+                </a>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </div>
 
 <div class="row">
@@ -30,8 +25,12 @@
                 <li>
                     <a class="nav-link" href="#/joinLobby">Join Lobby</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="#">Your Team</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Friends<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Invite Friends</a></li>
+                        <li><a href="#">Your Team</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Your Lobbies<span class="caret"></span></a>
@@ -41,7 +40,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-link" href="#">Events</a>
+                    <a class="nav-link" href="#nope">Events</a>
                 </li>
             </ul>
         </nav>
@@ -53,34 +52,40 @@
             {{#each lobbies}}
             <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{this._lobbyname}}</h5>
+                    <h3 class="mb-1" id="lobbyname">{{this._lobbyname}}</h3>
                     <small>{{this._datetime}}</small>
                 </div>
                 <p class="mb-1"><span class="bolder">Sport:</span> {{this._sport}}</p>
                 <p class="mb-1"><span class="bolder">Location:</span>{{this._location}}</p>
                 <p class="mb-1"><span class="bolder">Mode:</span> {{this._mode}}</p>
-                <small><span class="bolder">Created by</span> {{this._author}}</small>
-                <button type="button" class="btn btn-warning leave-lobby-btn lobby-btn">Leave</button>
+                <small>Created by: <span id="authorname">{{this._author}}</span></small>
+                <button type="button" class="btn btn-warning leave-lobby-btn lobby-btn btn-responsive">Leave</button>
             </li>
             {{/each}}
         </ul>
         {{else}}
         <div class="alert alert-info" role="alert">
-            <strong>Heads up!</strong> You haven't joined any lobby yet. Click <a href="#/joinLobby"><strong>here</strong></a> to join one.
+            <strong>Heads up!</strong> You haven't joined any lobby yet. Click <a href="#/joinLobby"><strong>here</strong></a>            to join one.
         </div>
         {{/if}}
     </div>
 </div>
 
-<div class="row">
-    <div class="col col-md-12">
-        <footer class="footer bg-inverse">
+<div class="row navbar footer-navbar bg-inverse">
+    <div class="row">
+        <div class="col col-md-12">
             <div class="brand-icons">
-                <i class="fa fa-facebook fa-2x fa-fw"></i>
-                <i class="fa fa-twitter fa-2x fa-fw"></i>
+                <a data-href="https://gnome-teamwork-e0bde.firebaseapp.com/" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgnome-teamwork-e0bde.firebaseapp.com%2F&amp;src=sdkpreparse"><i class="fa fa-facebook fa-2x fa-fw"></i></a>
+                <a><i class="fa fa-twitter fa-2x fa-fw"></i></a>
                 <i class="fa fa-github fa-2x fa-fw"></i>
                 <i class="fa fa-instagram fa-2x fa-fw"></i>
             </div>
-        </footer>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="footer-copyright">© 2017 Copyright: <a href="https://github.com/Team-Gnome/teamwork-js-applications"> Gnome-Team </a></div>
+        </div>
     </div>
 </div>

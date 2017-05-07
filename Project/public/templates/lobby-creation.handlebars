@@ -1,23 +1,18 @@
 <div class="row">
-    <div class="col col-md-12">
-        <nav class="navbar navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-inverse">
+        <div class="col-2 col-sm-2">
+            <a class="navbar-brand" href="#/home"><strong>Gnome-Team</strong></a>
+        </div>
+        <div class="col-10 col-sm-10 btn-container">
+            <div class="navbar-container">
+                <a class="btn btn-primary btn-nav btn-responsive" href="#/register" id="register-btn">Register</a>
+                <a class="btn btn-primary btn-nav btn-responsive" href="#/signin" id="sign-in-btn">Sign in</a>
 
-            <div class="row">
-                <div class="col col-md-2">
-                    <a class="navbar-brand" href="#/home">Gnome-Team</a>
-                </div>
-
-                <div class="col col-md-10">
-                    <div class="btn-nav-container">
-                        <a class="navbar-text" id="login-navbar-status" href="#/user">
-                        </a>
-
-                        <a class="btn btn-default navbar-btn" href="#/signin" id="sign-in-btn">Sign in</a>
-                    </div>
-                </div>
+                <a class="navbar-text" id="login-navbar-status" href="#/user">
+                </a>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </div>
 
 <div class="row">
@@ -30,8 +25,12 @@
                 <li>
                     <a class="nav-link" href="#/joinLobby">Join Lobby</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="#">Your Team</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Friends<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Invite Friends</a></li>
+                        <li><a href="#">Your Team</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Your Lobbies<span class="caret"></span></a>
@@ -41,14 +40,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-link" href="#">Events</a>
+                    <a class="nav-link" href="#nope">Events</a>
                 </li>
             </ul>
         </nav>
     </div>
 
-    <div class="col col-md-8">
-        <div class="registration-form">
+    <div class="col-10 col-md-8">
+        <div class="lobby-creation-form">
             <form>
                 <div class="form-group">
                     <label for="input-lobbyname">Lobby name</label>
@@ -75,30 +74,36 @@
                 </div>
 
                 <small id="help" class="form-text text-muted">Choose for what are you searching for:</small>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" value="Team" checked> Team
-            </label>
-                    <label class="btn btn-primary">
-                <input type="radio" name="options" id="option2" autocomplete="off" value="Partner"> Partner
-            </label>
+                <div class="radio-group" data-toggle="buttons">
+                    <label class="btn btn-primary radio-btn btn-responsive active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" value="Team" checked> Team
+                    </label>
+                    <label class="btn btn-primary radio-btn btn-responsive">
+                        <input type="radio" name="options" id="option2" autocomplete="off" value="Partner"> Partner
+                    </label>
                 </div>
             </form>
 
-            <button class="btn btn-primary submit-btn" id="create-lobby-btn">Create</button>
+            <button class="btn btn-primary submit-btn btn-responsive" id="create-lobby-btn">Create</button>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col col-md-12">
-        <footer class="footer bg-inverse">
+<div class="row navbar footer-navbar bg-inverse">
+    <div class="row">
+        <div class="col col-md-12">
             <div class="brand-icons">
-                <i class="fa fa-facebook fa-2x fa-fw"></i>
-                <i class="fa fa-twitter fa-2x fa-fw"></i>
+                <a data-href="https://gnome-teamwork-e0bde.firebaseapp.com/" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgnome-teamwork-e0bde.firebaseapp.com%2F&amp;src=sdkpreparse"><i class="fa fa-facebook fa-2x fa-fw"></i></a>
+                <a><i class="fa fa-twitter fa-2x fa-fw"></i></a>
                 <i class="fa fa-github fa-2x fa-fw"></i>
                 <i class="fa fa-instagram fa-2x fa-fw"></i>
             </div>
-        </footer>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="footer-copyright">© 2017 Copyright: <a href="https://github.com/Team-Gnome/teamwork-js-applications"> Gnome-Team </a></div>
+        </div>
     </div>
 </div>
