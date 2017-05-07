@@ -6,38 +6,48 @@ import * as createdLobbiesController from 'createdLobbiesController';
 
 const $root = $('#root');
 
-let cachedLobbies = [];
-
 export function loadHandlebars(params) {
     return new Promise((resolve, reject) => {
-        data.getAllLobies('/lobbies')
-            .then((lobbies) => {
-                if (lobbies === null) {
-                    resolve(loadTemplate('list-lobbies')
-                        .then(template => {
-                            $root.html(template);
-                        }));
-                }
-                else {
-                    lobbies = Object.values(lobbies);
+        data.getForbidenLobbies()
+            .then((forbiddenLobbies) => {
+                data.getData('/lobbies')
+                    .then((lobbies) => {
+                        if (lobbies === null) {
+                            resolve(loadTemplate('list-lobbies')
+                                .then(template => {
+                                    $root.html(template);
+                                }));
+                        }
+                        else {
+                            lobbies = Object.values(lobbies);
 
-                    const lobbiesObj = {
-                        lobbies: lobbies
-                    };
-                    cachedLobbies = lobbies.slice();
+                            function removeDuplicates(forbiddenLobbies, lobbies) {
+                                for (let i = 0, len = forbiddenLobbies.length; i < len; i += 1) {
+                                    for (let j = 0, len2 = lobbies.length; j < len2; j += 1) {
+                                        if (forbiddenLobbies[i]._lobbyname === lobbies[j]._lobbyname
+                                            && forbiddenLobbies[i]._author === lobbies[j]._author) {
+                                            lobbies.splice(j, 1);
+                                            len2 = lobbies.length;
+                                        }
+                                    }
+                                }
+                            };
 
-                    return lobbiesObj;
-                };
-            })
-            .then((lobbies) => {
-                resolve(loadTemplate('list-lobbies', lobbies)
-                    .then(template => {
-                        $root.html(template);
-                    }));
+                            removeDuplicates(forbiddenLobbies, lobbies);
+
+                            const lobbiesObj = {
+                                lobbies: lobbies
+                            };
+
+                            return lobbiesObj;
+                        };
+                    })
+                    .then((lobbies) => {
+                        resolve(loadTemplate('list-lobbies', lobbies)
+                            .then(template => {
+                                $root.html(template);
+                            }));
+                    });
             });
     });
-};
-
-export {
-    cachedLobbies
 };

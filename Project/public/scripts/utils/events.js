@@ -1,15 +1,12 @@
-import { navigo } from 'router';
-
+import $ from 'jquery';
+import 'toastrConfig';
 import Lobby from 'lobby';
 import * as data from 'data';
+import { navigo } from 'router';
 import { firebaseDb as db } from 'firebaseConfig';
 import userAuthentificator from 'userAuthentificator';
 import * as loadingScreenHandler from 'loadingScreenHandler';
 import * as inputDataHandler from 'inputDataHandler';
-
-import * as listLobbiesController from 'listLobbiesController';
-import * as joinedLobbiesController from 'joinedLobbiesController';
-import * as createdLobbiesController from 'createdLobbiesController';
 
 const events = {
     register: () => {
@@ -28,6 +25,7 @@ const events = {
                         loadingScreenHandler.initContentChange()
                             .then((uid) => {
                                 navigo.router.navigate('#/user');
+                                toastr.success('You have successfully logged in.')
                             });
                     });
             });
@@ -35,14 +33,15 @@ const events = {
     signout: () => {
         $('#sign-in-btn').click(() => {
             if ($('#sign-in-btn').text() === 'Sign out') {
-                userAuthentificator.signOut();
+                userAuthentificator.signOut()
+                toastr.info('Logged out.')
             };
         });
     },
     createLobby: () => {
         $('#create-lobby-btn').click(() => {
-            const lobbyInputData = inputDataHandler.getLobbyInputData();
             const uid = localStorage['authkey'];
+            const lobbyInputData = inputDataHandler.getLobbyInputData();
 
             return db.ref('/users/' + uid)
                 .once('value', function (snapshot) {
@@ -61,6 +60,7 @@ const events = {
                 })
                 .then(() => {
                     navigo.router.navigate('#/joinLobby');
+                    toastr.success('You have successfully created your lobby.')
                 })
         });
     },
@@ -69,77 +69,125 @@ const events = {
             const $target = $(ev.target);
             const lobbyName = $target
                 .parent()
-                .children('.d-flex')
-                .children('.mb-1')
+                .find('#lobbyname')
                 .text();
 
-            function findByName(lobby) {
-                return lobby._lobbyname === lobbyName;
-            };
+            const authorName = $target
+                .parent()
+                .find('#authorname')
+                .text();
 
-            const lobby = listLobbiesController.cachedLobbies.find(findByName);
+            data.getData(`lobbies`)
+                .then((lobbies) => {
+                    lobbies = Object.values(lobbies);
 
-            data.addJoinedLobbyInUserDatabase(lobby);
+                    function findByNameAndAuthor(lobby) {
+                        return lobby._lobbyname === lobbyName
+                            && lobby._author === authorName;
+                    };
 
-            $target.addClass('disabled');
-            $target.addClass('btn-success');
-            $target.text('Joined');
-            $target.removeClass('btn-primary');
+                    const lobby = lobbies.find(findByNameAndAuthor);
+
+                    return lobby;
+                })
+                .then((lobby) => {
+                    data.addJoinedLobbyInUserDatabase(lobby);
+                })
+                .then(() => {
+                    toastr.success('The lobby is added in your lobbies.')
+                    $target.addClass('disabled');
+                    $target.addClass('btn-success');
+                    $target.text('Joined');
+                    $target.removeClass('btn-primary');
+                });
         });
     },
     leaveLobby: () => {
         $('.leave-lobby-btn').click((ev) => {
+            const uid = localStorage['authkey'];
             const $target = $(ev.target);
-            const lobbyName = $target
+
+            const parentNode = $target
                 .parent()
-                .children('.d-flex')
-                .children('.mb-1')
+
+            const lobbyName = parentNode
+                .find('#lobbyname')
                 .text();
 
-            function findByName(lobby) {
-                return lobby._lobbyname === lobbyName;
-            };
+            const authorName = parentNode
+                .find('#authorname')
+                .text();
 
-            const lobby = joinedLobbiesController.cachedJoinedLobbies.find(findByName);
+            data.getData(`users/${uid}/joinedLobbies`)
+                .then((lobbies) => {
+                    lobbies = Object.values(lobbies);
 
-            data.deleteJoinedLobbyFromUserDatabase(lobby)
-                .then((callback) => {
-                    callback();
+                    function findByNameAndAuthor(lobby) {
+                        return lobby._lobbyname === lobbyName
+                            && lobby._author === authorName;
+                    };
+
+                    const lobby = lobbies.find(findByNameAndAuthor);
+
+                    return lobby;
                 })
-                .then(() => {
-                    navigo.router.navigate('#/joinedLobbies');
+                .then((lobby) => {
+                    data.deleteJoinedLobbyFromUserDatabase(lobby)
+                        .then((callback) => {
+                            callback();
+                        })
+                        .then(() => {
+                            toastr.success('The lobby is removed from your lobbies.')
+                            parentNode.remove();
+                        })
                 })
         });
     },
     deleteLobby: () => {
         $('.delete-lobby-btn').click((ev) => {
+            const uid = localStorage['authkey'];
             const $target = $(ev.target);
-            const lobbyName = $target
+
+            const parentNode = $target
                 .parent()
-                .children('.d-flex')
-                .children('.mb-1')
+
+            const lobbyName = parentNode
+                .find('#lobbyname')
                 .text();
 
-            function findByName(lobby) {
-                return lobby._lobbyname === lobbyName;
-            };
+            const authorName = parentNode
+                .find('#authorname')
+                .text();
 
-            const lobby = createdLobbiesController.cachedCreatedLobbies.find(findByName);
+            data.getData(`users/${uid}/createdLobbies`)
+                .then((lobbies) => {
+                    lobbies = Object.values(lobbies);
 
-            data.deleteLobbyFromDatabase(lobby)
-                .then((callback) => {
-                    callback();
-                });
+                    function findByNameAndAuthor(lobby) {
+                        return lobby._lobbyname === lobbyName
+                            && lobby._author === authorName;
+                    };
 
-            data.deleteCreatedLobbyFromUserDatabase(lobby)
-                .then((callback) => {
-                    callback();
+                    const lobby = lobbies.find(findByNameAndAuthor);
+
+                    return lobby;
                 })
-                .then(() => {
-                    navigo.router.navigate('/createdLobbies');
+                .then((lobby) => {
+                    data.deleteLobbyFromDatabase(lobby)
+                        .then((callback) => {
+                            callback();
+                        });
+                    data.deleteCreatedLobbyFromUserDatabase(lobby)
+                        .then((callback) => {
+                            callback();
+                        })
+                        .then(() => {
+                            toastr.success('The lobby is deleted.');
+                            parentNode.remove();
+                        });
                 });
         });
-    }
+    },
 };
 
 export default events;
