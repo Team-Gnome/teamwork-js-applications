@@ -1,58 +1,208 @@
-body{
-    overflow: hidden;
+body {
+    background: url("/styles/img/home-background.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 100% 100%;
+    margin-bottom:5%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.0vw;
 }
 
 .hidden {
     display: none;
 }
 
-.btn.btn-default.navbar-btn{
-   padding-top: 2px;
-}
-
-.btn-nav-container{
+h2{
     position: absolute;
-    float: right;
-    right: 10px;
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
-.navbar-text{
-    margin: 0;
-    margin-right: 20px;
+h2 span {
+   color: white; 
+   letter-spacing: 1px;  
+}
+
+.navbar {
+    width: 100%;
+}
+
+.navbar-text { 
+    float: right;
+    margin-top: 0.5%;
+    margin-right: 3%;
+}
+
+.btn-nav {
+    float: right;
+}
+
+.join-lobby-btn{
+    font-size:80%;
+    padding: 1% 1% 1% 1%;
+}
+
+.leave-lobby-btn  {
+    font-family: 'Montserrat', sans-serif;
+    font-size:80%;
+    padding: 1% 1% 1% 1%;
+}
+
+.delete-lobby-btn{
+    font-family: 'Montserrat', sans-serif;
+    font-size:80%;
+    padding: 1% 1% 1% 1%;
+}
+  
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding:1% 2%;
+    font-size:80%;
+    line-height: 1;
+    border-radius:3px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}
+
+.navbar-container {
+       width: 100%;
+       padding-right: 10px;
 }
 
 .sign-form {
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 25px;
+    background-color: rgba(41, 43, 44, 0.9); 
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    padding: 2% 2% 2% 2%;
     margin: auto;
-    margin-top: 150px;
-    width: 300px;
+    margin-top: 13%;
+    width: 25%;
     left: 0;
     right: 0;
+}
+
+.sign-form input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.0em;
+    font-weight: bolder;
+    color: white;
+}
+
+#inputPassword{
+    margin-bottom: 5%;
+}
+
+.sign-form label {
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: white;
 }
 
 .registration-form {
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 25px;
+    background-color: rgba(41, 43, 44, 0.9); 
+    filter: alpha(opacity=50); /* For IE8 and earlier */
     margin: auto;
-    margin-top: 50px;
-    width: 300px;
+    margin-top: 3%;
+    margin-bottom: 1.5%;
+    padding: 1% 5% 1% 5%;
+    width: 35%;
     left: 0;
     right: 0;
 }
 
-.btn-group label{
-    width: 150px;
+.registration-form input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.0em;
+    font-weight: bolder;
+    color: white;
 }
 
-.submit-btn{
+.registration-form label {
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: white;
+}
+
+.list-group-item small{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.lobby-creation-form{
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 25px;
+    background-color: rgba(41, 43, 44, 0.9); 
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    margin: auto;
+    margin-top: 2.2%;
+    padding: 1% 5% 1% 5%;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    right: 0;
+}
+
+.lobby-creation-form input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.0em;
+    font-weight: bolder;
+    color: white;
+}
+
+.lobby-creation-form label {
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: white;
+}
+
+input::-webkit-input-placeholder {
+    color: gray !important;  
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+    color: gray !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+    color: gray !important;  
+}
+ 
+input:-ms-input-placeholder {  
+    color: gray !important;  
+}
+
+.radio-btn {
+    width: 35%;
+}
+
+.radio-group {  
+    margin-bottom: 10%;
+    text-align:center;
+}
+
+.submit-btn {
+    font-family: 'Montserrat', sans-serif;
     display: block;
     margin: 0 auto;
-    width: 150px;
-    margin-top: 30px;
 }
+
 .d-flex{
     margin-bottom: 10px;
 }
 
-.lobbies-list{
-    margin-top: 2px;
+.lobbies-list {
+    margin-top: 1%;
     height: 650px;
     overflow-y:auto;
     padding-right: 10px;
@@ -60,7 +210,11 @@ body{
     bottom: 50px;
 }
 
-.bolder{
+.lobbies-list li {
+    background-color: rgba(255, 255, 255, 0.9); 
+}
+
+.bolder {
     font-weight: bold;
 }
 
@@ -71,20 +225,41 @@ body{
     width:100px;
 }
 
-.footer{
-    position: fixed;
+.footer-navbar {
+    color: #999;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.navbar.footer-navbar.bg-inverse{
+    position:fixed;
+    bottom:0px;
+    margin-bottom:0px;
+}
+
+.footer-copyright {
+    position: absolute;
+    bottom: 5px;
     width: 100%;
-    height: 6%;
-    bottom: 0;
+    margin: auto;
+    margin-left: 42%;
 }
 
 .brand-icons{
-    padding: 10px 30px 10px 30px;
-    color: #999;
+    color: #0275D8;
+}
+
+#sport-select{
+    font-family: 'Montserrat', sans-serif;
 }
 
 .alert{
-    margin-top: 2px;
+    margin: 1% 1%;
+}
+
+.form-control{
+      color: #999;
+      font-weight: bold;    
 }
 
 /*-------------------------------*/
@@ -96,15 +271,10 @@ body{
     padding: 0;
     list-style: none;
     height: 100%;
-        color: #292B2C;
-}
-
-.dropdown-toggle{
     color: #292B2C;
 }
 
 .sidebar-nav .dropdown-menu {
-
     position: relative;
     width: 100%;
     padding: 0;
@@ -112,6 +282,7 @@ body{
     border-radius: 0;
     border: none;
     box-shadow: none;
+    background-color: #292B2C;
 }
 
 .sidebar-nav li {
@@ -130,7 +301,7 @@ body{
     z-index: -1;
     height: 100%;
     width: 10px;
-    background-color: #1c1c1c;
+    background-color: #00ff99;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;
@@ -138,16 +309,16 @@ body{
 
 }
 .sidebar-nav li:nth-child(2):before {
-    background-color: #ec1b5a;
+    background-color: #ffff66;
 }
 .sidebar-nav li:nth-child(3):before {
-    background-color: #79aefe;
+    background-color: #ff4d88
 }
 .sidebar-nav li:nth-child(4):before {
-    background-color: #314190;
+    background-color: #1a75ff;
 }
 .sidebar-nav li:nth-child(5):before {
-    background-color: #279636;
+    background-color: #d580ff;
 }
 .sidebar-nav li:nth-child(6):before {
     background-color: #7d5d81;
@@ -170,9 +341,17 @@ body{
             transition: width .2s ease-in;
 }
 
+.dropdown-menu li:nth-child(1):before {
+    background-color: #35acdf;
+}
+ 
+.dropdown-menu li:nth-child(2):before {
+    background-color: #35acdf;
+}
+
 .sidebar-nav li a {
     display: block;
-    color: #292B2C;
+    color: #999;
     text-decoration: none;
     padding: 10px 30px 10px 30px;
 }
@@ -186,4 +365,92 @@ body{
     color: #fff;
     text-decoration: none;
     background-color: transparent;
+}
+
+/*-------------------------------*/
+/*     Profile styles        */
+/*-------------------------------*/
+
+.profile {
+  font-size: 1.2em;
+  margin: 10% 0;
+}
+
+.profile-sidebar {
+    color: white;
+    padding: 20px 0 10px 0;
+    border-radius: 25px;
+    background-color: rgba(41, 43, 44, 0.9); 
+}
+
+.profile-userpic img {
+  opacity: 0.8;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+  display:block;
+  margin:auto;
+  width: 20%;
+  height: 20%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 1.2em;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {  
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+.profile-nav{
+    padding-left: 0;
+    margin: auto;
+    width:20%;
+    text-align: center;
+    list-style-type: none;
 }
