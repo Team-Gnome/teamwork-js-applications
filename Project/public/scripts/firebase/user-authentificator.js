@@ -1,8 +1,7 @@
-import { navigo } from 'router';
-import * as firebase from 'firebase';
-
 import User from 'user';
 import * as data from 'data';
+import { navigo } from 'router';
+import * as firebase from 'firebase';
 import * as inputDataHandler from 'inputDataHandler';
 import * as signInUserController from 'signInUserController';
 import * as registerUserController from 'registerUserController';
@@ -31,10 +30,11 @@ export default class UserAuthentificator {
                     .then(() => {
                         const user = new User(userData.username, userData.firstname, userData.lastname, userData.email);
                         data.addNewUserInDatabase(user);
+                    })
+                    .then(() => {
+                        navigo.router.navigate('#/user');
+                        toastr.success('Your registration is successful.')
                     });
-            })
-            .then(() => {
-                navigo.router.navigate('#/user');
             });
     };
 
@@ -50,10 +50,9 @@ export default class UserAuthentificator {
     };
 
     static signOut() {
-        firebase.auth().signOut()
-            .catch(() => alert('Something went wrong. Please try again!'));
-
         localStorage.removeItem(LOCALSTORAGE_AUTH_KEY_NAME);
+        firebase.auth().signOut()
+            .catch(() => toastr.warning('Something went wrong. Please try again!'));
     };
 
     static signIn(email, password, onSuccess, onError) {
