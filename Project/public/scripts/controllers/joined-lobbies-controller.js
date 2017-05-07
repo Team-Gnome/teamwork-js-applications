@@ -2,12 +2,11 @@ import loadTemplate from 'templates';
 import * as data from 'data';
 
 const $root = $('#root');
-const uid = localStorage['authkey'];
-let cachedJoinedLobbies = [];
 
 export function loadHandlebars(params) {
+    const uid = localStorage['authkey'];
     return new Promise((resolve, reject) => {
-        data.getAllLobies(`/users/${uid}/joinedLobbies`)
+        data.getData(`/users/${uid}/joinedLobbies`)
             .then((lobbies) => {
                 if (lobbies === null) {
                     resolve(loadTemplate('joined-lobbies')
@@ -22,8 +21,6 @@ export function loadHandlebars(params) {
                         lobbies: lobbies
                     };
 
-                    cachedJoinedLobbies = lobbies.slice();
-
                     return lobbiesObj;
                 };
             })
@@ -34,9 +31,4 @@ export function loadHandlebars(params) {
                     }));
             });
     });
-};
-
-
-export {
-    cachedJoinedLobbies
 };
