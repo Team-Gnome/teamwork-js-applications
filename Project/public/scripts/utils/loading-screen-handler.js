@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import { navigo } from 'router';
 
 export function initContentChange() {
     return new Promise((resolve, reject) => {
@@ -7,21 +8,17 @@ export function initContentChange() {
                 const email = user.email;
                 const emailVerified = user.emailVerified;
 
-                $('#login-navbar-status').html(`You are currently logged with <a href="#/user">${email}</a>`);
+                $('.flex-column').removeClass('hidden');
+                $('#login-navbar-status').html(`You are currently logged with <strong><a href="#/user">${email}</a></strong>`);
                 $('#register-btn').addClass('hidden');
                 $('#sign-in-btn').text('Sign out');
-
-                // if (!emailVerified) {
-                //     $('#verify-btn').removeClass('hidden');
-                //     $('#verify-btn').click(User.verifyAcocunt);
-                // }
-
                 resolve(user.uid);
             }
             else {
-                $('#login-navbar-status').text('You are not currently logged in.');
-                $('#sign-in-btn').text('Sign in');
+                $('#moto').removeClass('hidden');
                 $('#register-btn').removeClass('hidden');
+                $('#login-navbar-status').html('You are not currently logged in.');
+                $('#sign-in-btn').text('Sign in');
             };
         });
     });
