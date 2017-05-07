@@ -1,10 +1,10 @@
 {
   "name": "team-gnome-teamwork",
   "version": "1.0.0",
-  "description": "SPA Project",
+  "description": "Telerik Academy Teamwork SPA Project",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R spec tests"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,20 @@
   "homepage": "https://github.com/Team-Gnome/teamwork-js-applications#readme",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
+    "chai": "^3.5.0",
+    "es5-shim": "^4.5.9",
+    "es6-shim": "^0.35.3",
     "firebase": "^3.9.0",
     "firebase-admin": "^4.2.1",
     "handlebars": "^4.0.6",
     "jquery": "^3.2.1",
+    "kendo-ui-core": "^2017.2.504",
+    "mdbootstrap": "^4.3.1",
+    "mocha": "^3.3.0",
     "navigo": "^4.6.2",
     "systemjs": "^0.20.12",
-    "systemjs-plugin-babel": "0.0.21"
+    "systemjs-plugin-babel": "0.0.21",
+    "toastr": "^2.1.2"
   },
   "devDependencies": {
     "font-awesome": "^4.7.0"

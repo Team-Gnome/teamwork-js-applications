@@ -5,9 +5,18 @@ SystemJS.config({
         'plugin-babel': 'node_modules/systemjs-plugin-babel/plugin-babel.js',
         'systemjs-babel-build': 'node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
 
+        // Library files
+        'jquery': 'node_modules/jquery/dist/jquery.min.js',
+        'handlebars': 'node_modules/handlebars/dist/handlebars.min.js',
+        'navigo': 'node_modules/navigo/lib/navigo.min.js',
+        'firebase-admin': 'node_modules/firebase-admin/lib/index.js',
+        'firebase': 'node_modules/firebase/firebase.js',
+        'toastrConfig': 'scripts/configs/toastr-config.js',
+
         // Application files
         'main': 'scripts/main.js',
         'templates': 'scripts/templates.js',
+        'unit-tests': '../tests/tests.js',
 
         // Configs
         'firebaseConfig': 'scripts/configs/firebase-config.js',
@@ -37,13 +46,6 @@ SystemJS.config({
         'inputDataHandler': 'scripts/utils/input-data-handler.js',
         'loadingScreenHandler': 'scripts/utils/loading-screen-handler.js',
         'validator': 'scripts/utils/validator.js',
-
-        // Library files
-        'jquery': 'node_modules/jquery/dist/jquery.min.js',
-        'handlebars': 'node_modules/handlebars/dist/handlebars.min.js',
-        'navigo': 'node_modules/navigo/lib/navigo.min.js',
-        'firebase-admin': 'node_modules/firebase-admin/lib/index.js',
-        'firebase': 'node_modules/firebase/firebase.js'
     },
     packages: {
         "/": {
@@ -51,5 +53,3 @@ SystemJS.config({
         }
     }
 });
-
-System.import('main');
