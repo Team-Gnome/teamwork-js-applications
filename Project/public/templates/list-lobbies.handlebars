@@ -1,11 +1,10 @@
 <div class="row">
     <nav class="navbar navbar-toggleable-md navbar-dark bg-inverse">
-        <div class="col-2 col-sm-2">
+        <div class="col col-xs-2 col-sm-2">
             <a class="navbar-brand" href="#/home"><strong>Gnome-Team</strong></a>
         </div>
-        <div class="col-10 col-sm-10 btn-container">
+        <div class="col-xs-12 col-sm-12 col-md-10 btn-container">
             <div class="navbar-container">
-                <a class="btn btn-primary btn-nav btn-responsive" href="#/register" id="register-btn">Register</a>
                 <a class="btn btn-primary btn-nav btn-responsive" href="#/signin" id="sign-in-btn">Sign in</a>
 
                 <a class="navbar-text" id="login-navbar-status" href="#/user">
@@ -16,7 +15,7 @@
 </div>
 
 <div class="row">
-     <div class="col col-md-2">
+    <div class="col-xs-2 col-sm-4 col-md-2">
         <nav class="nav flex-column">
             <ul class="sidebar-nav">
                 <li>
@@ -46,7 +45,7 @@
         </nav>
     </div>
 
-    <div class="col-6 col-md-10">
+    <div class="col-xs-4 col-sm-8 col-md-10">
         {{#if lobbies}}
         <ul class="lobbies-list">
             {{#each lobbies}}
@@ -59,7 +58,7 @@
                 <p class="mb-1"><span class="bolder">Location:</span>{{this._location}}</p>
                 <p class="mb-1"><span class="bolder">Mode:</span> {{this._mode}}</p>
                 <small>Created by: <span id="authorname">{{this._author}}</span></small>
-                <button type="button" class="btn btn-xs btn-primary join-lobby-btn lobby-btn btn-responsive">Join</button>
+                <button type="button" class="btn btn-primary join-lobby-btn btn-nav btn-responsive lobby-btn">Join</button>
             </li>
             {{/each}}
         </ul>
@@ -73,19 +72,19 @@
 
 <div class="row navbar footer-navbar bg-inverse">
     <div class="row">
-        <div class="col col-md-12">
+        <div class="col col-xs-12 col-sm-12 col-md-12">
             <div class="brand-icons">
                 <a data-href="https://gnome-teamwork-e0bde.firebaseapp.com/" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgnome-teamwork-e0bde.firebaseapp.com%2F&amp;src=sdkpreparse"><i class="fa fa-facebook fa-2x fa-fw"></i></a>
                 <a><i class="fa fa-twitter fa-2x fa-fw"></i></a>
-                <i class="fa fa-github fa-2x fa-fw"></i>
+                <a href="https://github.com/Team-Gnome/teamwork-js-applications"><i class="fa fa-github fa-2x fa-fw"></i></a>
                 <i class="fa fa-instagram fa-2x fa-fw"></i>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col col-md-12">
-            <div class="footer-copyright">© 2017 Copyright: <a href="https://github.com/Team-Gnome/teamwork-js-applications"> Gnome-Team </a></div>
+        <div class="col col-xs-12 col-sm-12 col-md-12">
+            <div class="footer-copyright">© 2017 Copyright:<a href="https://github.com/Team-Gnome/teamwork-js-applications"> Gnome-Team </a></div>
         </div>
     </div>
 </div>
