@@ -1,5 +1,5 @@
-import loadTemplate from 'templates';
 import * as data from 'data';
+import loadTemplate from 'templates';
 
 const $root = $('#root');
 

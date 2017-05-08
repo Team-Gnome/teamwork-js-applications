@@ -192,6 +192,76 @@ const events = {
                 });
         });
     },
+    joinEvent: () => {
+        $('.join-event-btn').click((ev) => {
+            const $target = $(ev.target);
+
+            const parentNode = $target
+                .parent()
+
+            const eventName = parentNode
+                .find('#eventname')
+                .text();
+
+            data.getData(`events`)
+                .then((events) => {
+                    events = Object.values(events);
+
+                    function findByName(event) {
+                        return event._name === eventName;
+                    };
+
+                    const event = events.find(findByName);
+                    return event;
+                })
+                .then((event) => {
+                    data.addJoinedEventInUserDatabase(event);
+                })
+                .then(() => {
+                    toastr.success('The event is successfully added.')
+                    $target.addClass('disabled');
+                    $target.addClass('btn-success');
+                    $target.text('Joined');
+                    $target.removeClass('btn-primary');
+                });
+        });
+    },
+    leaveEvent: () => {
+        $('.leave-event-btn').click((ev) => {
+            const uid = localStorage['authkey'];
+            const $target = $(ev.target);
+
+            const parentNode = $target
+                .parent()
+
+            const eventName = parentNode
+                .find('#eventname')
+                .text();
+
+            data.getData(`users/${uid}/joinedEvents`)
+                .then((events) => {
+                    events = Object.values(events);
+
+                    function findByName(event) {
+                        return event._name === eventName
+                    };
+
+                    const event = events.find(findByName);
+
+                    return event;
+                })
+                .then((event) => {
+                    data.deleteJoinedEventFromUserDatabase(event)
+                        .then((callback) => {
+                            callback();
+                        })
+                        .then(() => {
+                            toastr.success('The event is successfully removed.')
+                            parentNode.remove();
+                        })
+                });
+        });
+    }
 };
 
 export default events;

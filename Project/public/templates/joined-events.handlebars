@@ -15,7 +15,7 @@
 </div>
 
 <div class="row">
-      <div class="col-xs-2 col-sm-4 col-md-2">
+    <div class="col-xs-2 col-sm-4 col-md-2">
         <nav class="nav flex-column">
             <ul class="sidebar-nav">
                 <li>
@@ -49,26 +49,28 @@
         </nav>
     </div>
 
-    <div class="col-6 col-md-10">
-        {{#if lobbies}}
+    <div class="col-xs-4 col-sm-8 col-md-10">
+        {{#if events}}
         <ul class="lobbies-list">
-            {{#each lobbies}}
+            {{#each events}}
             <li href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h3 class="mb-1" id="lobbyname">{{this._lobbyname}}</h3>
+                    <h3 class="mb-1" id="eventname">{{this._name}}</h3>
                     <small>{{this._datetime}}</small>
                 </div>
-                <p class="mb-1"><span class="bolder">Sport:</span> {{this._sport}}</p>
-                <p class="mb-1"><span class="bolder">Location:</span>{{this._location}}</p>
-                <p class="mb-1"><span class="bolder">Mode:</span> {{this._mode}}</p>
-                <small>Created by: <span id="authorname">{{this._author}}</span></small>
-                <button type="button" class="btn btn-danger delete-lobby-btn lobby-btn btn-responsive">Delete</button>
+                <p class="mb-1"><span class="bolder">Sport: </span> {{this._sport}}</p>
+                <p class="mb-1"><span class="bolder">Location: </span>{{this._location}}</p>
+                <p class="mb-1"><span class="bolder">Duration: </span> {{this._duration}}</p>
+                <p class="mb-1"><span class="bolder">Mode: </span> {{this._mode}}</p>
+                <p class="mb-1"><span class="bolder">Description: </span>{{this._description}}</p>
+                <p class="mb-1"><span class="bolder">Prize: </span> {{this._prize}}</p>
+                <button type="button" class="btn btn-warning leave-event-btn lobby-btn btn-responsive">Leave</button>
             </li>
             {{/each}}
         </ul>
         {{else}}
         <div class="alert alert-info" role="alert">
-            <strong>Heads up!</strong> You haven't created any lobby yet. Click <a href="#/createLobby"><strong>here</strong></a>            to create one.
+            <strong>Heads up!</strong> There are no events that you are participating right now. Click <a href="#/events"><strong>here</strong></a>            to join one.
         </div>
         {{/if}}
     </div>

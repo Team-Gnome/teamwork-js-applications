@@ -29,6 +29,7 @@ SystemJS.config({
         // Models
         'user': '../scripts/models/user.js',
         'lobby': '../scripts/models/lobby.js',
+        'event': '../scripts/models/event.js',
 
         // Controllers
         'homeController': './../scripts/controllers/home-controller.js',
@@ -39,6 +40,8 @@ SystemJS.config({
         'listLobbiesController': './../scripts/controllers/list-lobbies-controller.js',
         'joinedLobbiesController': './../scripts/controllers/joined-lobbies-controller.js',
         'createdLobbiesController': './../scripts/controllers/created-lobbies-controller.js',
+        'listEventsController': './../scripts/controllers/list-events-controller.js',
+        'joinedEventsController': './../scripts/controllers/joined-events-controller.js',
         'notFoundController': './../scripts/controllers/not-found-controller.js',
 
         // Utils

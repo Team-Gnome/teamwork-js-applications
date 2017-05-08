@@ -6,26 +6,26 @@ const $root = $('#root');
 export function loadHandlebars(params) {
     const uid = localStorage['authkey'];
     return new Promise((resolve, reject) => {
-        data.getData(`/users/${uid}/joinedLobbies`)
-            .then((lobbies) => {
-                if (lobbies === null) {
-                    resolve(loadTemplate('joined-lobbies')
+        data.getData(`/users/${uid}/joinedEvents`)
+            .then((events) => {
+                if (events === null) {
+                    resolve(loadTemplate('joined-events')
                         .then(template => {
                             $root.html(template);
                         }));
                 }
                 else {
-                    lobbies = Object.values(lobbies);
+                    events = Object.values(events);
 
-                    const lobbiesObj = {
-                        lobbies: lobbies
+                    const eventsObj = {
+                        events: events
                     };
 
-                    return lobbiesObj;
+                    return eventsObj;
                 };
             })
-            .then((lobbies) => {
-                resolve(loadTemplate('joined-lobbies', lobbies)
+            .then((events) => {
+                resolve(loadTemplate('joined-events', events)
                     .then(template => {
                         $root.html(template);
                     }));

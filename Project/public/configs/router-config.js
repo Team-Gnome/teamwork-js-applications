@@ -10,6 +10,8 @@ import * as lobbyCreationController from 'createLobbyController';
 import * as listLobbiesController from 'listLobbiesController';
 import * as joinedLobbiesController from 'joinedLobbiesController';
 import * as createdLobbiesController from 'createdLobbiesController';
+import * as listEventsController from 'listEventsController';
+import * as joinedEventsController from 'joinedEventsController';
 import * as notFoundController from 'notFoundController';
 
 export const navigo = (() => {
@@ -79,6 +81,20 @@ export const navigo = (() => {
                     .then(() => { loadingScreenHandler.initContentChange(); })
                     .then(() => { events.signout(); })
                     .then(() => { events.deleteLobby(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
+            })
+            .on('/events', () => {
+                listEventsController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { events.joinEvent(); })
+                    .then(() => { loadingScreenHandler.showContent(); })
+            })
+            .on('/joinedEvents', () => {
+                joinedEventsController.loadHandlebars()
+                    .then(() => { loadingScreenHandler.initContentChange(); })
+                    .then(() => { events.signout(); })
+                    .then(() => { events.leaveEvent(); })
                     .then(() => { loadingScreenHandler.showContent(); })
             })
             .resolve();
