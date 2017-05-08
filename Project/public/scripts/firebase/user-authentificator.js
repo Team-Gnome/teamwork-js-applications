@@ -3,10 +3,9 @@ import * as data from 'data';
 import { navigo } from 'router';
 import * as firebase from 'firebase';
 import * as inputDataHandler from 'inputDataHandler';
-import * as signInUserController from 'signInUserController';
-import * as registerUserController from 'registerUserController';
 
 const LOCALSTORAGE_AUTH_KEY_NAME = 'authkey';
+const LOCALSTORAGE_EMAIL_KEY_NAME = 'emailkey';
 
 export default class UserAuthentificator {
     static currentUserData() {
@@ -24,34 +23,27 @@ export default class UserAuthentificator {
         const userEmail = userData.email;
         const userPassword = userData.password;
 
-        firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+        return firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
             .then(() => {
                 this.signIn(userEmail, userPassword)
                     .then(() => {
                         const user = new User(userData.username, userData.firstname, userData.lastname, userData.email);
                         data.addNewUserInDatabase(user);
-                    })
-                    .then(() => {
-                        navigo.router.navigate('#/user');
-                        toastr.success('Your registration is successful.')
                     });
             });
     };
 
-    static verifyAcocunt() {
-        firebase.auth().currentUser.sendEmailVerification()
-            .then(() => alert(`Verification e-mail sent to ${User.currentUser().email}`))
-            .catch(() => alert('Something went wrong. Please try again!'));
-    };
-
-    static verifyAcocunt() {
-        firebase.auth().currentUser.sendEmailVerification()
-            .then(() => alert(`Verification e-mail sent to ${User.currentUser.email}`));
+    static verifyAcccount() {
+        firebase.auth().currentUser.sendEmailVerification();
     };
 
     static signOut() {
-        localStorage.removeItem(LOCALSTORAGE_AUTH_KEY_NAME);
-        firebase.auth().signOut()
+        firebase.auth()
+            .signOut()
+            .then(() => {
+                localStorage.removeItem(LOCALSTORAGE_AUTH_KEY_NAME);
+                localStorage.removeItem(LOCALSTORAGE_EMAIL_KEY_NAME);
+            })
             .catch(() => toastr.warning('Something went wrong. Please try again!'));
     };
 
@@ -72,6 +64,7 @@ export default class UserAuthentificator {
             })
             .then(() => {
                 localStorage.setItem(LOCALSTORAGE_AUTH_KEY_NAME, this.currentUserData().uid);
+                localStorage.setItem(LOCALSTORAGE_EMAIL_KEY_NAME, this.currentUserData().email);
             });
     };
 };

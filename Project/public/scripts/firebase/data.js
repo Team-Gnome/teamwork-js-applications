@@ -14,13 +14,13 @@ export function addNewUserInDatabase(user) {
 
 export function addNewLobbyInDatabase(lobby) {
     const lobbiesRef = defaultRef.child('lobbies');
+
     return new Promise((resolve, reject) => {
         resolve(lobbiesRef.push(lobby));
     });
 };
 
 export function deleteLobbyFromDatabase(lobby) {
-    console.log(lobby)
     return new Promise((resolve, reject) => {
         const lobbiesRef = defaultRef.child(`lobbies`)
             .once('value', function (snapshot) {

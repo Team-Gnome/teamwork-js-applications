@@ -1,9 +1,6 @@
 import loadTemplate from 'templates';
 import * as data from 'data';
 
-import * as joinedLobbiesController from 'joinedLobbiesController';
-import * as createdLobbiesController from 'createdLobbiesController';
-
 const $root = $('#root');
 
 export function loadHandlebars(params) {

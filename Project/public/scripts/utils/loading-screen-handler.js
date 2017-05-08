@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-import { navigo } from 'router';
 
 export function initContentChange() {
     return new Promise((resolve, reject) => {

@@ -11,7 +11,11 @@ import * as inputDataHandler from 'inputDataHandler';
 const events = {
     register: () => {
         $('#send-btn-register').click(() => {
-            userAuthentificator.registerUser();
+            userAuthentificator.registerUser()
+                .then(() => {
+                    navigo.router.navigate('#/user');
+                    toastr.success('Your registration is successful.')
+                });
         });
     },
     signin: () => {
