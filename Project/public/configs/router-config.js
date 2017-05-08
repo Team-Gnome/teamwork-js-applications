@@ -1,8 +1,5 @@
-import 'jquery';
-import Navigo from 'navigo';
-
-import * as data from 'data';
 import events from 'events';
+import Navigo from 'navigo';
 import * as loadingScreenHandler from 'loadingScreenHandler';
 
 import * as homeController from 'homeController';
@@ -14,7 +11,6 @@ import * as listLobbiesController from 'listLobbiesController';
 import * as joinedLobbiesController from 'joinedLobbiesController';
 import * as createdLobbiesController from 'createdLobbiesController';
 import * as notFoundController from 'notFoundController';
-
 
 export const navigo = (() => {
     const router = (() => {
