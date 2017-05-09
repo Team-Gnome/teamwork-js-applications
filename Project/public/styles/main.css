@@ -40,6 +40,12 @@ h2 span {
     margin-right: 3%;
 }
 
+.navbar-brand strong {
+    font-size: 2em;
+    font-weight: bold;
+    color:#0275D8;
+}
+
 .btn-nav {
     float: right;
 }
