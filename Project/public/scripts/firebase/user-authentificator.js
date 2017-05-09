@@ -56,9 +56,9 @@ export default class UserAuthentificator {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     if (errorCode === 'auth/wrong-password') {
-                        alert('Wrong password.');
+                        toastr.warning('Wrong password!');
                     } else {
-                        alert(errorMessage);
+                        toastr.warning('Wrong email!');
                     }
                 }
             })
